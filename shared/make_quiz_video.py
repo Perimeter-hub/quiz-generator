@@ -4,12 +4,12 @@ Universal Quiz Video Generator — with background music support
 Works for any quiz folder containing:
   batch_generation_queue.csv
   images_and_videos/
-  music_question.mp3   (optional — background during question)
-  music_countdown.mp3  (optional — tension during countdown)
-  music_answer.mp3     (optional — reveal fanfare)
+  music_question.mp3   (optional)
+  music_countdown.mp3  (optional)
+  music_answer.mp3     (optional)
 
-Usage: python make_quiz_video.py
-Output: quiz_video.mp4
+Usage: python3 ../shared/make_quiz_video.py
+Output: <folder_name>.mp4  (e.g. quiz1.mp4, quiz2.mp4, quiz_de_fussball.mp4)
 """
 
 import csv, os, sys
@@ -17,25 +17,28 @@ from PIL import Image, ImageDraw, ImageFont
 import numpy as np
 
 # ── CONFIG ────────────────────────────────────────────────────────────────────
-CSV_PATH    = "batch_generation_queue.csv"
-IMAGES_DIR  = "images_and_videos"
-OUTPUT      = "quiz_video.mp4"
-FPS         = 30
-W, H        = 1280, 720
+CSV_PATH   = "batch_generation_queue.csv"
+IMAGES_DIR = "images_and_videos"
+FPS        = 30
+W, H       = 1280, 720
+
+# Output filename = current folder name (quiz1 → quiz1.mp4, quiz4 → quiz4.mp4)
+_folder   = os.path.basename(os.path.abspath("."))
+OUTPUT    = f"{_folder}.mp4"
 
 # Timings (seconds)
-T_TITLE     = 4.0
-T_QUESTION  = 5.0
-T_THINKING  = 6.0
-T_ANSWER    = 4.0
-T_OUTRO     = 6.0
+T_TITLE    = 4.0
+T_QUESTION = 5.0
+T_THINKING = 6.0
+T_ANSWER   = 4.0
+T_OUTRO    = 6.0
 
-# Music files (optional — place in same folder as this script)
+# Music files (optional — place in same folder as CSV)
 MUSIC_QUESTION  = "music_question.mp3"
 MUSIC_COUNTDOWN = "music_countdown.mp3"
 MUSIC_ANSWER    = "music_answer.mp3"
 
-# Volume levels (0.0 - 1.0)
+# Volume levels
 VOL_QUESTION  = 0.4
 VOL_COUNTDOWN = 0.6
 VOL_ANSWER    = 0.7
@@ -105,16 +108,15 @@ def draw_countdown(img, sec):
     return Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
 
 def load_base(img_path):
+    """Load image or create dark fallback if missing."""
     if os.path.exists(img_path):
         return Image.open(img_path).convert("RGB").resize((W, H), Image.LANCZOS)
+    # Fallback: dark blue gradient placeholder
     arr = np.zeros((H, W, 3), dtype=np.uint8)
-    arr[:, :] = [20, 20, 60]
+    arr[:, :] = [15, 20, 50]
     return Image.fromarray(arr)
 
 def make_segments(row):
-    """Returns list of (PIL.Image, duration_sec, music_tag) tuples.
-    music_tag: 'question' | 'countdown' | 'answer' | 'title' | None
-    """
     img_path = os.path.join(IMAGES_DIR, row["file_name"])
     atype    = row["asset_type"]
     qtext    = row["question_text"].strip()
@@ -128,18 +130,13 @@ def make_segments(row):
         segs.append((img, T_TITLE, "title"))
 
     elif atype == "question_scene":
-        # Phase 1: question
         img_q = base.copy()
         if qnum:
             img_q = draw_bar(img_q, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
         img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
         segs.append((img_q, T_QUESTION, "question"))
-
-        # Phase 2: countdown (1 sec per tick)
         for s in range(int(T_THINKING), 0, -1):
             segs.append((draw_countdown(img_q, s), 1.0, "countdown"))
-
-        # Phase 3: answer reveal
         img_a = base.copy()
         if qnum:
             img_a = draw_bar(img_a, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
@@ -154,28 +151,7 @@ def make_segments(row):
     return segs
 
 
-def load_music_clip(path, duration, volume):
-    """Load and prepare a music clip for given duration."""
-    try:
-        from moviepy import AudioFileClip
-        if not os.path.exists(path):
-            return None
-        clip = AudioFileClip(path).with_effects(
-            [__import__('moviepy.audio.fx', fromlist=['MultiplyVolume']).MultiplyVolume(volume)]
-        )
-        # Loop if needed
-        if clip.duration < duration:
-            loops = int(duration / clip.duration) + 1
-            from moviepy import concatenate_audioclips
-            clip = concatenate_audioclips([clip] * loops)
-        return clip.subclipped(0, duration)
-    except Exception as e:
-        print(f"  ⚠  Music load failed ({path}): {e}")
-        return None
-
-
 def loop_audio(clip, duration):
-    """Loop an audio clip to fill the required duration."""
     from moviepy import concatenate_audioclips
     if clip.duration >= duration:
         return clip.subclipped(0, duration)
@@ -184,7 +160,6 @@ def loop_audio(clip, duration):
 
 
 def build_audio_track(segments_with_music):
-    """Build composite audio track — loads each MP3 only once to avoid 'too many open files'."""
     try:
         from moviepy import AudioFileClip, CompositeAudioClip
         import moviepy.audio.fx as afx
@@ -202,7 +177,7 @@ def build_audio_track(segments_with_music):
         if has_cd: print(f"     ✓ {MUSIC_COUNTDOWN}")
         if has_an: print(f"     ✓ {MUSIC_ANSWER}")
 
-        # Load each file ONCE and apply volume — key fix for 'too many open files'
+        # Load each file ONCE to avoid 'too many open files'
         clips_cache = {}
         if has_q:
             c = AudioFileClip(MUSIC_QUESTION)
@@ -215,10 +190,8 @@ def build_audio_track(segments_with_music):
             c = AudioFileClip(MUSIC_ANSWER)
             clips_cache["answer"] = c.with_effects([afx.MultiplyVolume(VOL_ANSWER)])
 
-        # Build one segment per phase, placed at the right time offset
         audio_clips = []
         current_time = 0.0
-
         for img, dur, tag in segments_with_music:
             base_clip = clips_cache.get(tag)
             if base_clip is not None:
@@ -228,7 +201,6 @@ def build_audio_track(segments_with_music):
 
         if not audio_clips:
             return None
-
         return CompositeAudioClip(audio_clips)
 
     except Exception as e:
@@ -238,7 +210,7 @@ def build_audio_track(segments_with_music):
 
 def main():
     try:
-        from moviepy import ImageSequenceClip, CompositeAudioClip
+        from moviepy import ImageSequenceClip
     except ImportError:
         print("Installing moviepy...")
         os.system(f"{sys.executable} -m pip install moviepy pillow -q")
@@ -246,17 +218,32 @@ def main():
 
     if not os.path.exists(CSV_PATH):
         print(f"ERROR: {CSV_PATH} not found.")
+        print("Run this from inside a quiz folder (quiz1/, quiz2/, quiz3/, etc.)")
+        sys.exit(1)
+
+    if not os.path.isdir(IMAGES_DIR):
+        print(f"ERROR: '{IMAGES_DIR}' folder not found.")
+        print(f"Run generate_images.py (or generate_shapes.py for quiz2) first.")
         sys.exit(1)
 
     rows = []
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
-    print(f"Loaded {len(rows)} assets\n")
+    print(f"Loaded {len(rows)} assets from CSV")
+    print(f"Output file: {OUTPUT}\n")
 
+    # Check for missing images and warn clearly
     missing = [r["file_name"] for r in rows
                if not os.path.exists(os.path.join(IMAGES_DIR, r["file_name"]))]
     if missing:
-        print(f"⚠  {len(missing)} missing images (color fallback)")
+        print(f"⚠  {len(missing)} images missing — using dark placeholder:")
+        for m in missing[:10]:
+            print(f"   ✗ {m}")
+        if len(missing) > 10:
+            print(f"   … and {len(missing)-10} more")
+        print()
+    else:
+        print(f"✓  All {len(rows)} images found in {IMAGES_DIR}/\n")
 
     print("Building frames...")
     all_segments = []
@@ -274,15 +261,11 @@ def main():
     total_sec = len(all_frames) / FPS
     print(f"\nFrames: {len(all_frames)} = {total_sec/60:.1f} min")
 
-    # Build audio
     print("\nBuilding audio track...")
     audio = build_audio_track(all_segments)
 
-    # Build video
     print(f"\nWriting {OUTPUT}...")
-    from moviepy import ImageSequenceClip
     clip = ImageSequenceClip(all_frames, fps=FPS)
-
     if audio:
         clip = clip.with_audio(audio)
         print("  🎵 Audio track attached")
@@ -299,11 +282,8 @@ def main():
 
     size_mb = os.path.getsize(OUTPUT) / 1024 / 1024
     print(f"\n✅  Done! → {OUTPUT}  ({size_mb:.1f} MB)")
-    if audio:
-        print("    🎵 With background music")
-    else:
-        print("    🔇 Silent — add music files and re-run to enable audio")
-
+    if missing:
+        print(f"⚠  {len(missing)} images were missing — regenerate them for best quality")
 
 if __name__ == "__main__":
     main()
