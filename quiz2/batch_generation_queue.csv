@@ -1,0 +1,59 @@
+asset_id,asset_type,file_name,question_text,answer,question_number,round_number,prompt_hint
+opening_title,title_card,opening_title_state_shapes.png,Guess the US State by its Shape!,,,,
+round_01,title_card,round_01_easy_shapes.png,ROUND 1: EASY SHAPES,,,,
+q01,question_scene,scene_q01_texas.png,Which state has this shape?,"Texas",1,1,Texas outline shape silhouette
+q02,question_scene,scene_q02_california.png,Which state has this shape?,"California",2,1,California outline shape silhouette
+q03,question_scene,scene_q03_florida.png,Which state has this shape?,"Florida",3,1,Florida outline shape silhouette
+q04,question_scene,scene_q04_michigan.png,Which state has this shape?,"Michigan",4,1,Michigan outline shape silhouette
+q05,question_scene,scene_q05_hawaii.png,Which state has this shape?,"Hawaii",5,1,Hawaii islands outline shape silhouette
+q06,question_scene,scene_q06_alaska.png,Which state has this shape?,"Alaska",6,1,Alaska outline shape silhouette
+q07,question_scene,scene_q07_louisiana.png,Which state has this shape?,"Louisiana",7,1,Louisiana outline shape silhouette
+q08,question_scene,scene_q08_oklahoma.png,Which state has this shape?,"Oklahoma",8,1,Oklahoma outline shape silhouette
+q09,question_scene,scene_q09_idaho.png,Which state has this shape?,"Idaho",9,1,Idaho outline shape silhouette
+q10,question_scene,scene_q10_maryland.png,Which state has this shape?,"Maryland",10,1,Maryland outline shape silhouette
+round_02,title_card,round_02_medium_shapes.png,ROUND 2: GETTING TRICKIER,,,,
+q11,question_scene,scene_q11_utah.png,Which state has this shape?,"Utah",11,2,Utah outline shape silhouette
+q12,question_scene,scene_q12_wyoming.png,Which state has this shape?,"Wyoming",12,2,Wyoming outline shape silhouette
+q13,question_scene,scene_q13_colorado.png,Which state has this shape?,"Colorado",13,2,Colorado outline shape silhouette
+q14,question_scene,scene_q14_nevada.png,Which state has this shape?,"Nevada",14,2,Nevada outline shape silhouette
+q15,question_scene,scene_q15_new_mexico.png,Which state has this shape?,"New Mexico",15,2,New Mexico outline shape silhouette
+q16,question_scene,scene_q16_minnesota.png,Which state has this shape?,"Minnesota",16,2,Minnesota outline shape silhouette
+q17,question_scene,scene_q17_virginia.png,Which state has this shape?,"Virginia",17,2,Virginia outline shape silhouette
+q18,question_scene,scene_q18_west_virginia.png,Which state has this shape?,"West Virginia",18,2,West Virginia outline shape silhouette
+q19,question_scene,scene_q19_tennessee.png,Which state has this shape?,"Tennessee",19,2,Tennessee outline shape silhouette
+q20,question_scene,scene_q20_kentucky.png,Which state has this shape?,"Kentucky",20,2,Kentucky outline shape silhouette
+round_03,title_card,round_03_tricky_shapes.png,ROUND 3: SHAPE EXPERT MODE,,,,
+q21,question_scene,scene_q21_maine.png,Which state has this shape?,"Maine",21,3,Maine outline shape silhouette
+q22,question_scene,scene_q22_new_hampshire.png,Which state has this shape?,"New Hampshire",22,3,New Hampshire outline shape silhouette
+q23,question_scene,scene_q23_vermont.png,Which state has this shape?,"Vermont",23,3,Vermont outline shape silhouette
+q24,question_scene,scene_q24_massachusetts.png,Which state has this shape?,"Massachusetts",24,3,Massachusetts outline shape silhouette
+q25,question_scene,scene_q25_connecticut.png,Which state has this shape?,"Connecticut",25,3,Connecticut outline shape silhouette
+q26,question_scene,scene_q26_rhode_island.png,Which state has this shape?,"Rhode Island",26,3,Rhode Island outline shape silhouette
+q27,question_scene,scene_q27_north_carolina.png,Which state has this shape?,"North Carolina",27,3,North Carolina outline shape silhouette
+q28,question_scene,scene_q28_south_carolina.png,Which state has this shape?,"South Carolina",28,3,South Carolina outline shape silhouette
+q29,question_scene,scene_q29_georgia.png,Which state has this shape?,"Georgia",29,3,Georgia outline shape silhouette
+q30,question_scene,scene_q30_alabama.png,Which state has this shape?,"Alabama",30,3,Alabama outline shape silhouette
+round_04,title_card,round_04_harder_shapes.png,ROUND 4: HARDER CLUES,,,,
+q31,question_scene,scene_q31_mississippi.png,Which state has this shape?,"Mississippi",31,4,Mississippi outline shape silhouette
+q32,question_scene,scene_q32_arkansas.png,Which state has this shape?,"Arkansas",32,4,Arkansas outline shape silhouette
+q33,question_scene,scene_q33_missouri.png,Which state has this shape?,"Missouri",33,4,Missouri outline shape silhouette
+q34,question_scene,scene_q34_iowa.png,Which state has this shape?,"Iowa",34,4,Iowa outline shape silhouette
+q35,question_scene,scene_q35_illinois.png,Which state has this shape?,"Illinois",35,4,Illinois outline shape silhouette
+q36,question_scene,scene_q36_indiana.png,Which state has this shape?,"Indiana",36,4,Indiana outline shape silhouette
+q37,question_scene,scene_q37_ohio.png,Which state has this shape?,"Ohio",37,4,Ohio outline shape silhouette
+q38,question_scene,scene_q38_pennsylvania.png,Which state has this shape?,"Pennsylvania",38,4,Pennsylvania outline shape silhouette
+q39,question_scene,scene_q39_new_york.png,Which state has this shape?,"New York",39,4,New York outline shape silhouette
+q40,question_scene,scene_q40_new_jersey.png,Which state has this shape?,"New Jersey",40,4,New Jersey outline shape silhouette
+round_05,title_card,round_05_final_shapes.png,ROUND 5: FINAL CHALLENGE,,,,
+q41,question_scene,scene_q41_delaware.png,Which state has this shape?,"Delaware",41,5,Delaware outline shape silhouette
+q42,question_scene,scene_q42_north_dakota.png,Which state has this shape?,"North Dakota",42,5,North Dakota outline shape silhouette
+q43,question_scene,scene_q43_south_dakota.png,Which state has this shape?,"South Dakota",43,5,South Dakota outline shape silhouette
+q44,question_scene,scene_q44_nebraska.png,Which state has this shape?,"Nebraska",44,5,Nebraska outline shape silhouette
+q45,question_scene,scene_q45_kansas.png,Which state has this shape?,"Kansas",45,5,Kansas outline shape silhouette
+q46,question_scene,scene_q46_montana.png,Which state has this shape?,"Montana",46,5,Montana outline shape silhouette
+q47,question_scene,scene_q47_oregon.png,Which state has this shape?,"Oregon",47,5,Oregon outline shape silhouette
+q48,question_scene,scene_q48_washington.png,Which state has this shape?,"Washington",48,5,Washington state outline shape silhouette
+q49,question_scene,scene_q49_arizona.png,Which state has this shape?,"Arizona",49,5,Arizona outline shape silhouette
+q50,question_scene,scene_q50_wisconsin.png,Which state has this shape?,"Wisconsin",50,5,Wisconsin outline shape silhouette
+outro,outro,outro_scoreboard.png,How many did you get right?,,,,
+end_screen,outro,end_screen.png,Subscribe for more US Geography Quizzes!,,,,

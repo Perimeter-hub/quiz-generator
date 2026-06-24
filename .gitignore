@@ -1,0 +1,6 @@
+.env
+*.mp4
+images_and_videos/
+__pycache__/
+*.pyc
+.DS_Store
