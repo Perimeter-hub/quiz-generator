@@ -174,10 +174,19 @@ def load_music_clip(path, duration, volume):
         return None
 
 
+def loop_audio(clip, duration):
+    """Loop an audio clip to fill the required duration."""
+    from moviepy import concatenate_audioclips
+    if clip.duration >= duration:
+        return clip.subclipped(0, duration)
+    loops = int(duration / clip.duration) + 2
+    return concatenate_audioclips([clip] * loops).subclipped(0, duration)
+
+
 def build_audio_track(segments_with_music):
-    """Build composite audio track from segments."""
+    """Build composite audio track — loads each MP3 only once to avoid 'too many open files'."""
     try:
-        from moviepy import AudioFileClip, CompositeAudioClip, concatenate_audioclips
+        from moviepy import AudioFileClip, CompositeAudioClip
         import moviepy.audio.fx as afx
 
         has_q  = os.path.exists(MUSIC_QUESTION)
@@ -186,38 +195,35 @@ def build_audio_track(segments_with_music):
 
         if not any([has_q, has_cd, has_an]):
             print("  ℹ  No music files found — building silent video")
-            print(f"     Place {MUSIC_QUESTION}, {MUSIC_COUNTDOWN}, {MUSIC_ANSWER}")
-            print("     in this folder to enable music.")
             return None
 
-        print(f"  🎵 Music files found:")
+        print("  🎵 Music files found:")
         if has_q:  print(f"     ✓ {MUSIC_QUESTION}")
         if has_cd: print(f"     ✓ {MUSIC_COUNTDOWN}")
         if has_an: print(f"     ✓ {MUSIC_ANSWER}")
 
+        # Load each file ONCE and apply volume — key fix for 'too many open files'
+        clips_cache = {}
+        if has_q:
+            c = AudioFileClip(MUSIC_QUESTION)
+            clips_cache["question"] = c.with_effects([afx.MultiplyVolume(VOL_QUESTION)])
+            clips_cache["title"]    = c.with_effects([afx.MultiplyVolume(0.25)])
+        if has_cd:
+            c = AudioFileClip(MUSIC_COUNTDOWN)
+            clips_cache["countdown"] = c.with_effects([afx.MultiplyVolume(VOL_COUNTDOWN)])
+        if has_an:
+            c = AudioFileClip(MUSIC_ANSWER)
+            clips_cache["answer"] = c.with_effects([afx.MultiplyVolume(VOL_ANSWER)])
+
+        # Build one segment per phase, placed at the right time offset
         audio_clips = []
         current_time = 0.0
 
         for img, dur, tag in segments_with_music:
-            music_path = None
-            vol = 0.3
-            if tag == "question"  and has_q:  music_path, vol = MUSIC_QUESTION,  VOL_QUESTION
-            elif tag == "countdown" and has_cd: music_path, vol = MUSIC_COUNTDOWN, VOL_COUNTDOWN
-            elif tag == "answer"    and has_an: music_path, vol = MUSIC_ANSWER,    VOL_ANSWER
-            elif tag == "title"     and has_q:  music_path, vol = MUSIC_QUESTION,  0.25
-
-            if music_path:
-                clip = AudioFileClip(music_path)
-                # Loop to fill duration
-                if clip.duration < dur:
-                    loops = int(dur / clip.duration) + 2
-                    from moviepy import concatenate_audioclips
-                    clip = concatenate_audioclips([clip] * loops)
-                clip = clip.subclipped(0, dur).with_start(current_time)
-                # Apply volume
-                clip = clip.with_effects([afx.MultiplyVolume(vol)])
-                audio_clips.append(clip)
-
+            base_clip = clips_cache.get(tag)
+            if base_clip is not None:
+                segment = loop_audio(base_clip, dur).with_start(current_time)
+                audio_clips.append(segment)
             current_time += dur
 
         if not audio_clips:
