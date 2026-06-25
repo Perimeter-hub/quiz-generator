@@ -166,13 +166,6 @@ def make_country_image(country, rings, round_num, q_num, out_path):
     draw.rounded_rectangle([W//2-tw//2-30,18,W//2+tw//2+30,82], radius=32, fill=(0,0,0,170))
     draw.text((W//2-tw//2, 26), question, font=font_q, fill="#FFFFFF")
 
-    # Answer pill bottom
-    font_a = load_font(68, bold=True)
-    bbox = draw.textbbox((0,0), country, font=font_a)
-    tw = bbox[2]-bbox[0]
-    ay = H - 120
-    draw.rounded_rectangle([W//2-tw//2-40, ay, W//2+tw//2+40, ay+88], radius=44, fill="#FFD700")
-    draw.text((W//2-tw//2, ay+8), country, font=font_a, fill="#1a0a3d")
 
     # QUIZ GO badge
     font_b = load_font(28, bold=True)
