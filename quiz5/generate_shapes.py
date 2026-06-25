@@ -96,9 +96,16 @@ def get_coords(geometry):
         for ring in geometry["coordinates"]:
             rings.append([(c[0], c[1]) for c in ring])
     elif geometry["type"] == "MultiPolygon":
+        # Find the largest polygon by point count
+        best = None
+        best_len = 0
         for polygon in geometry["coordinates"]:
-            largest = max(polygon, key=lambda r: len(r[0]) if r else 0)
-            rings.append([(c[0], c[1]) for c in largest[0]])
+            for ring in polygon:
+                if len(ring) > best_len:
+                    best_len = len(ring)
+                    best = ring
+        if best:
+            rings.append([(c[0], c[1]) for c in best])
     return rings
 
 def normalize(rings, pad=80):
