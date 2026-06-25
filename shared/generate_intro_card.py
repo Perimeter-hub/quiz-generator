@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Quiz Blitz — Intro Card Generator
-Creates a bright 3-second intro screen to use as YouTube thumbnail (first frame).
+Quiz Blitz — Intro Card Generator (Style 3: Big number + bold text)
+Creates a bright 3-second intro screen prepended to the video.
 Run from any quiz folder.
 Usage: python3 ../shared/generate_intro_card.py
 """
@@ -14,36 +14,44 @@ W, H = 1280, 720
 
 QUIZ_CONFIGS = {
     "quiz1": {
-        "bg": "#CC0000",
-        "accent": "#FFCC00",
-        "line1": "CAN YOU NAME",
-        "line2": "ALL 50 STATES?",
-        "emoji": "🗺️",
-        "sub": "50 QUESTIONS • 6 SECONDS EACH",
+        "bg":       "#1A1A1A",
+        "accent":   "#FFCC00",
+        "number":   "50",
+        "line1":    "US STATES",
+        "line2":    "CAN YOU NAME THEM ALL?",
+        "line3":    "BY CLUE ALONE?",
+        "badge":    "ONLY 4% PASS!",
+        "badge_bg": "#CC0000",
     },
     "quiz2": {
-        "bg": "#0A0F2E",
-        "accent": "#3B6DFF",
-        "line1": "GUESS THE STATE",
-        "line2": "BY ITS SHAPE!",
-        "emoji": "🔷",
-        "sub": "50 STATES • CAN YOU GET 50/50?",
+        "bg":       "#1A1A1A",
+        "accent":   "#FFCC00",
+        "number":   "50",
+        "line1":    "US STATES",
+        "line2":    "CAN YOU NAME THEM ALL",
+        "line3":    "BY SHAPE ALONE?",
+        "badge":    "ONLY 4% PASS!",
+        "badge_bg": "#3B6DFF",
     },
     "quiz3": {
-        "bg": "#006400",
-        "accent": "#FFCC00",
-        "line1": "KENNST DU DEN",
-        "line2": "DEUTSCHEN FUSSBALL?",
-        "emoji": "⚽",
-        "sub": "50 FRAGEN • NUR FÜR EXPERTEN!",
+        "bg":       "#1A1A1A",
+        "accent":   "#FFCC00",
+        "number":   "50",
+        "line1":    "FUSSBALL-FRAGEN",
+        "line2":    "SCHAFFST DU ALLE",
+        "line3":    "NUR EXPERTEN BESTEHEN!",
+        "badge":    "NUR 3% SCHAFFEN ES!",
+        "badge_bg": "#CC0000",
     },
     "quiz4": {
-        "bg": "#1A1A1A",
-        "accent": "#CC0000",
-        "line1": "CAN YOU NAME THESE",
-        "line2": "ICONIC TV SHOWS?",
-        "emoji": "📺",
-        "sub": "50 SHOWS • ONLY TRUE FANS PASS!",
+        "bg":       "#1A1A1A",
+        "accent":   "#FFCC00",
+        "number":   "50",
+        "line1":    "ICONIC TV SHOWS",
+        "line2":    "CAN YOU NAME THEM ALL?",
+        "line3":    "ONLY TRUE FANS PASS!",
+        "badge":    "ONLY 5% SCORE 50/50!",
+        "badge_bg": "#CC0000",
     },
 }
 
@@ -63,96 +71,101 @@ def load_font(size, bold=False):
             except: pass
     return ImageFont.load_default()
 
-def make_intro(config, out_path):
-    bg_rgb = hex_to_rgb(config["bg"])
-    acc_rgb = hex_to_rgb(config["accent"])
+def center_text(draw, text, y, font, color, shadow=False):
+    bb = draw.textbbox((0, 0), text, font=font)
+    x = (W - (bb[2] - bb[0])) // 2
+    if shadow:
+        draw.text((x+3, y+3), text, font=font, fill=(0, 0, 0))
+    draw.text((x, y), text, font=font, fill=color)
 
-    # Base background
+def make_intro(config, out_path):
+    bg = hex_to_rgb(config["bg"])
+    acc = hex_to_rgb(config["accent"])
+    badge_bg = hex_to_rgb(config["badge_bg"])
+
     arr = np.zeros((H, W, 3), dtype=np.uint8)
-    arr[:, :] = bg_rgb
+    arr[:, :] = bg
     img = Image.fromarray(arr, "RGB")
     draw = ImageDraw.Draw(img)
 
-    # Diagonal stripes for energy
-    stripe_color = tuple(min(255, c + 20) for c in bg_rgb)
-    for i in range(-H, W + H, 40):
-        draw.line([(i, 0), (i + H, H)], fill=stripe_color, width=20)
+    # Subtle grid lines
+    gc = tuple(min(255, c + 18) for c in bg)
+    for x in range(0, W, 80): draw.line([(x, 0), (x, H)], fill=gc, width=1)
+    for y in range(0, H, 80): draw.line([(0, y), (W, y)], fill=gc, width=1)
 
-    # Top bar
-    draw.rectangle([(0, 0), (W, 90)], fill=acc_rgb)
+    # Top label
+    f_brand = load_font(34, bold=True)
+    center_text(draw, "QUIZ BLITZ", 22, f_brand, acc)
 
-    # QUIZ BLITZ label in top bar
-    f_brand = load_font(52, bold=True)
-    bb = draw.textbbox((0,0), "QUIZ BLITZ", font=f_brand)
-    draw.text(((W - (bb[2]-bb[0])) // 2, 18), "QUIZ BLITZ", font=f_brand, fill=bg_rgb)
-
-    # Main lines
-    f_lg = load_font(118, bold=True)
-    f_md = load_font(90, bold=True)
-
-    # Line 1
-    bb1 = draw.textbbox((0,0), config["line1"], font=f_lg)
-    draw.text(((W - (bb1[2]-bb1[0])) // 2, 130), config["line1"], font=f_lg, fill=(255,255,255))
-
-    # Line 2 in accent color
-    bb2 = draw.textbbox((0,0), config["line2"], font=f_md)
-    x2 = (W - (bb2[2]-bb2[0])) // 2
+    # BIG number
+    f_num = load_font(240, bold=True)
+    bb = draw.textbbox((0, 0), config["number"], font=f_num)
+    nx = (W - (bb[2] - bb[0])) // 2
     # Shadow
-    draw.text((x2+3, 263), config["line2"], font=f_md, fill=(0,0,0))
-    draw.text((x2, 260), config["line2"], font=f_md, fill=acc_rgb)
+    draw.text((nx+5, 63), config["number"], font=f_num, fill=(0, 0, 0))
+    draw.text((nx, 60), config["number"], font=f_num, fill=acc)
 
-    # Bottom bar
-    draw.rectangle([(0, H-90), (W, H)], fill=acc_rgb)
-    f_sub = load_font(40, bold=True)
-    bb_sub = draw.textbbox((0,0), config["sub"], font=f_sub)
-    draw.text(((W - (bb_sub[2]-bb_sub[0])) // 2, H-70), config["sub"], font=f_sub, fill=bg_rgb)
+    # Line 1 — white, bold
+    f_lg = load_font(58, bold=True)
+    center_text(draw, config["line1"], 318, f_lg, (255, 255, 255), shadow=True)
 
-    # Decorative circles
-    for cx, cy, r, alpha in [(100, H//2, 80, 30), (W-100, H//2, 80, 30),
-                               (200, H//2, 40, 20), (W-200, H//2, 40, 20)]:
-        overlay = Image.new("RGBA", (W, H), (0,0,0,0))
-        od = ImageDraw.Draw(overlay)
-        od.ellipse([(cx-r, cy-r), (cx+r, cy+r)],
-                   outline=acc_rgb + (alpha,), width=4)
-        img = Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
-        draw = ImageDraw.Draw(img)
+    # Divider line
+    draw.rectangle([(W//2 - 200, 392), (W//2 + 200, 396)], fill=acc)
+
+    # Line 2 — accent color
+    f_md = load_font(46, bold=True)
+    center_text(draw, config["line2"], 408, f_md, acc, shadow=True)
+
+    # Line 3 — grey
+    f_sm = load_font(34, bold=False)
+    center_text(draw, config["line3"], 466, f_sm, (150, 150, 150))
+
+    # Badge bottom right
+    f_badge = load_font(28, bold=True)
+    badge_text = config["badge"]
+    bb_b = draw.textbbox((0, 0), badge_text, font=f_badge)
+    bw = bb_b[2] - bb_b[0]
+    bx = W - bw - 48
+    by = H - 56
+    draw.rounded_rectangle([(bx - 12, by - 8), (bx + bw + 12, by + 36)],
+                             radius=6, fill=badge_bg)
+    draw.text((bx, by), badge_text, font=f_badge, fill=(255, 255, 255))
 
     img.save(out_path, "PNG")
-    print(f"  ✓  {out_path}")
+    print(f"  ✓  Saved: {out_path}")
     return img
 
 
-def prepend_to_video(intro_img, quiz_folder, duration_sec=3):
-    """Prepend intro frames to existing quiz video."""
+def prepend_to_video(intro_img, duration_sec=3):
     try:
         from moviepy import ImageSequenceClip, VideoFileClip, concatenate_videoclips
     except ImportError:
-        print("Installing moviepy...")
         os.system(f"{sys.executable} -m pip install moviepy -q")
         from moviepy import ImageSequenceClip, VideoFileClip, concatenate_videoclips
 
     FPS = 30
-    folder_name = os.path.basename(os.path.abspath(quiz_folder))
-    video_path = os.path.join(quiz_folder, f"{folder_name}.mp4")
+    folder_name = os.path.basename(os.path.abspath("."))
 
-    if not os.path.exists(video_path):
-        # Try quiz_video.mp4 fallback
-        video_path = os.path.join(quiz_folder, "quiz_video.mp4")
-        if not os.path.exists(video_path):
-            print(f"  ✗  Video not found in {quiz_folder}")
-            return
+    # Find the video
+    video_path = None
+    for candidate in [f"{folder_name}.mp4", "quiz_video.mp4"]:
+        if os.path.exists(candidate):
+            video_path = candidate
+            break
+
+    if not video_path:
+        print(f"  ✗  No video found. Run make_quiz_video.py first.")
+        return
 
     print(f"  Loading: {video_path}")
     arr = np.array(intro_img)
-    n_frames = duration_sec * FPS
-    intro_clip = ImageSequenceClip([arr] * n_frames, fps=FPS)
-
+    intro_clip = ImageSequenceClip([arr] * (duration_sec * FPS), fps=FPS)
     main_clip = VideoFileClip(video_path)
 
-    # Carry audio from main clip
+    # Match audio: intro is silent, main has music
     final = concatenate_videoclips([intro_clip, main_clip])
 
-    out_path = video_path.replace(".mp4", "_with_intro.mp4")
+    out_path = f"{folder_name}_final.mp4"
     print(f"  Writing: {out_path}")
     final.write_videofile(
         out_path,
@@ -162,8 +175,9 @@ def prepend_to_video(intro_img, quiz_folder, duration_sec=3):
         logger=None,
     )
     size_mb = os.path.getsize(out_path) / 1024 / 1024
-    print(f"  ✅  Done! → {os.path.basename(out_path)} ({size_mb:.1f} MB)")
+    print(f"\n  ✅  Done! → {out_path} ({size_mb:.1f} MB)")
     print(f"  First frame = YouTube thumbnail 🎯")
+    print(f"  Upload this file to YouTube!")
 
 
 def main():
@@ -171,7 +185,8 @@ def main():
     config = QUIZ_CONFIGS.get(folder)
 
     if not config:
-        print(f"Quiz '{folder}' not in config. Available: {list(QUIZ_CONFIGS.keys())}")
+        print(f"Quiz '{folder}' not recognized.")
+        print(f"Available: {list(QUIZ_CONFIGS.keys())}")
         print("Add your quiz config to QUIZ_CONFIGS in this script.")
         return
 
@@ -179,16 +194,14 @@ def main():
     out_png = "images_and_videos/intro_card.png"
 
     print(f"Quiz Blitz — Intro Card Generator")
+    print(f"Style: Big number + bold text")
     print(f"Quiz: {folder}\n")
 
     print("Step 1: Generating intro card...")
     intro_img = make_intro(config, out_png)
 
     print("\nStep 2: Prepending to video...")
-    prepend_to_video(intro_img, ".")
-
-    print(f"\nDone! Upload *_with_intro.mp4 to YouTube.")
-    print(f"The first frame will automatically be the thumbnail preview.")
+    prepend_to_video(intro_img)
 
 
 if __name__ == "__main__":
