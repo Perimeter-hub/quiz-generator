@@ -41,7 +41,7 @@ MUSIC_ANSWER    = "music_answer.mp3"
 # Volume levels
 VOL_QUESTION  = 0.4
 VOL_COUNTDOWN = 0.6
-VOL_ANSWER    = 0.7
+VOL_ANSWER    = 0.49
 
 # Colors
 COL_Q_BAR  = (10,  20,  80,  185)
