@@ -144,7 +144,7 @@ def make_segments(row):
     segs     = []
 
     if atype == "title_card":
-        img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if qtext else base.copy()
+        img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if (qtext and not CLEAN_STYLE) else base.copy()
         segs.append((img, T_TITLE, "title"))
 
     elif atype == "question_scene":
@@ -165,7 +165,7 @@ def make_segments(row):
         segs.append((img_a, T_ANSWER, "answer"))
 
     elif atype == "outro":
-        img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=34, bold=True) if qtext else base.copy()
+        img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=34, bold=True) if (qtext and not CLEAN_STYLE) else base.copy()
         segs.append((img, T_OUTRO, "title"))
 
     return segs
