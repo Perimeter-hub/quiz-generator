@@ -41,7 +41,7 @@ MUSIC_ANSWER    = "music_answer.mp3"
 # Volume levels
 VOL_QUESTION  = 0.4
 VOL_COUNTDOWN = 0.6
-VOL_ANSWER    = 0.49
+VOL_ANSWER    = 0.25
 
 # Colors
 COL_Q_BAR  = (10,  20,  80,  185)
@@ -77,6 +77,18 @@ def wrap_text(text, font, max_w, draw):
             cur.append(w)
     if cur: lines.append(" ".join(cur))
     return lines
+
+def strip_emojis(text):
+    """Remove emoji characters and leftover whitespace from text for clean bar rendering."""
+    out = []
+    for ch in text:
+        cp = ord(ch)
+        if (0x1F000 <= cp <= 0x1FAFF or 0x2600 <= cp <= 0x27BF or
+            0x2B00 <= cp <= 0x2BFF or cp in (0xFE0F, 0x200D, 0x20E3) or
+            0x1F1E6 <= cp <= 0x1F1FF):
+            continue
+        out.append(ch)
+    return " ".join("".join(out).split())
 
 def draw_bar(img, text, y_frac, bar_color, text_color, fsize=38, bold=True, pad=24):
     overlay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -119,8 +131,8 @@ def load_base(img_path):
 def make_segments(row):
     img_path = os.path.join(IMAGES_DIR, row["file_name"])
     atype    = row["asset_type"]
-    qtext    = row["question_text"].strip()
-    answer   = row["answer"].strip()
+    qtext    = strip_emojis(row["question_text"].strip())
+    answer   = strip_emojis(row["answer"].strip())
     qnum     = row["question_number"].strip()
     base     = load_base(img_path)
     segs     = []
