@@ -199,6 +199,79 @@ def make_emoji_scene(emojis, question_label, answer, q_num, theme, out_path):
 
     img.save(out_path)
 
+def make_wyr_scene(clue, q_num, theme, out_path):
+    """Would You Rather: two emoji options split left/right with VS."""
+    # Parse clue: "OptA|emojiA|OptB|emojiB"
+    parts = clue.split("|")
+    if len(parts) == 4:
+        opt_a, em_a, opt_b, em_b = parts
+    else:
+        opt_a, em_a, opt_b, em_b = "Option A", "", "Option B", ""
+
+    # Split background: left warm red, right cool blue
+    img = Image.new("RGB", (W, H))
+    draw = ImageDraw.Draw(img)
+    for y in range(H):
+        t = y/H
+        # left gradient
+        lr = int(180*(1-t*0.3)); lg = int(40+20*t); lb = int(60+20*t)
+        draw.line([(0,y),(W//2,y)], fill=(min(255,lr),lg,lb))
+        rr = int(30+10*t); rg = int(80+30*t); rb = int(150+40*t)
+        draw.line([(W//2,y),(W,y)], fill=(rr,rg,min(255,rb)))
+    img = img.convert("RGB")
+    draw = ImageDraw.Draw(img, "RGBA")
+
+    # Center divider
+    draw.rectangle([W//2-3,0,W//2+3,H], fill=(255,255,255,180))
+
+    # Top question label
+    font_q = load_font(46, bold=True)
+    rounded_pill(draw, W//2, 70, "Would You Rather?", font_q, (0,0,0,160), "#FFFFFF")
+
+    # Emoji A (left center)
+    if em_a:
+        ems = extract_emojis(em_a)
+        if ems:
+            ei = download_emoji(ems[0])
+            if ei:
+                big = ei.resize((220,220), Image.LANCZOS)
+                img.paste(big, (W//4-110, H//2-140), big)
+    # Emoji B (right center)
+    if em_b:
+        ems = extract_emojis(em_b)
+        if ems:
+            ei = download_emoji(ems[0])
+            if ei:
+                big = ei.resize((220,220), Image.LANCZOS)
+                img.paste(big, (W*3//4-110, H//2-140), big)
+    draw = ImageDraw.Draw(img, "RGBA")
+
+    # Option labels
+    font_opt = load_font(50, bold=True)
+    def draw_centered(text, cx, cy, col):
+        bbox = draw.textbbox((0,0), text, font=font_opt)
+        tw = bbox[2]-bbox[0]
+        draw.text((cx-tw//2, cy), text, font=font_opt, fill=col)
+    draw_centered(opt_a, W//4, H//2+130, "#FFFFFF")
+    draw_centered(opt_b, W*3//4, H//2+130, "#FFFFFF")
+
+    # VS badge center
+    font_vs = load_font(56, bold=True)
+    vbbox = draw.textbbox((0,0),"VS",font=font_vs)
+    vw,vh = vbbox[2]-vbbox[0], vbbox[3]-vbbox[1]
+    draw.ellipse([W//2-55,H//2-55,W//2+55,H//2+55], fill="#FFD700", outline="#FFFFFF", width=4)
+    draw.text((W//2-vw//2, H//2-vh//2-vbbox[1]), "VS", font=font_vs, fill="#1a0a2e")
+
+    # QUIZ GO badge
+    font_badge = load_font(30, bold=True)
+    btxt = "QUIZ GO!"
+    bbox = draw.textbbox((0,0), btxt, font=font_badge)
+    bw = bbox[2]-bbox[0]
+    draw.rounded_rectangle([W-bw-75, H-65, W-25, H-15], radius=25, fill="#FFD700")
+    draw.text((W-bw-50, H-58), btxt, font=font_badge, fill="#1a0a2e")
+
+    img.save(out_path)
+
 def make_title_card(text, theme, out_path, big_emoji=None):
     rgb_accent = hex_to_rgb(theme["accent"])
     img = vertical_gradient(theme["bg1"], theme["bg2"])
@@ -289,6 +362,10 @@ def main():
                 clean_text = clean_text  # keep round text
             make_title_card(clean_text or "QUIZ TIME", theme, out_path, big_emoji)
             print(f"  ✅ {fname}")
+        elif asset_type == "wyr_scene":
+            clue = row.get("main_visual_clue","").strip()
+            make_wyr_scene(clue, q_num, theme, out_path)
+            print(f"  ✅ {fname}  (WYR)")
         else:
             question = row.get("question_text","")
             answer = row.get("answer","").strip()
