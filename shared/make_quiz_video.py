@@ -19,6 +19,12 @@ import numpy as np
 # ── CONFIG ────────────────────────────────────────────────────────────────────
 CSV_PATH   = "batch_generation_queue.csv"
 IMAGES_DIR = "images_and_videos"
+# CLEAN_STYLE: viral quizzes that bake the question/number into the image
+# (quiz2, quiz5, quiz6, quiz7, quiz8, quiz9, quiz10) skip duplicate text bars.
+# Enable via env CLEAN_STYLE=1 or auto-detect by current folder name.
+_cwd = os.path.basename(os.getcwd())
+CLEAN_STYLE = (os.environ.get("CLEAN_STYLE","").strip() == "1" or
+               _cwd in ("quiz2","quiz5","quiz6","quiz7","quiz8","quiz9","quiz10"))
 FPS        = 30
 W, H       = 1280, 720
 
@@ -143,16 +149,18 @@ def make_segments(row):
 
     elif atype == "question_scene":
         img_q = base.copy()
-        if qnum:
-            img_q = draw_bar(img_q, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
-        img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
+        if not CLEAN_STYLE:
+            if qnum:
+                img_q = draw_bar(img_q, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
+            img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
         segs.append((img_q, T_QUESTION, "question"))
         for s in range(int(T_THINKING), 0, -1):
             segs.append((draw_countdown(img_q, s), 1.0, "countdown"))
         img_a = base.copy()
-        if qnum:
-            img_a = draw_bar(img_a, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
-        img_a = draw_bar(img_a, qtext,          0.55, COL_Q_BAR, COL_WHITE, fsize=30, bold=False)
+        if not CLEAN_STYLE:
+            if qnum:
+                img_a = draw_bar(img_a, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
+            img_a = draw_bar(img_a, qtext,          0.55, COL_Q_BAR, COL_WHITE, fsize=30, bold=False)
         img_a = draw_bar(img_a, f"✓  {answer}", 0.80, COL_A_BAR, COL_YELLOW, fsize=46, bold=True)
         segs.append((img_a, T_ANSWER, "answer"))
 
