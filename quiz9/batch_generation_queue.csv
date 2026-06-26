@@ -1,21 +1,21 @@
 asset_id,asset_type,file_name,round,question_number,question_text,answer,main_visual_clue,image_prompt,video_prompt
 opening_title,title_card,opening_quiz9.png,Opening,,Would You Rather? 🤔,,vs choice,,Animate title reveal.
 round_01,title_card,round_01.png,ROUND 1: FOOD & DRINK,,ROUND 1: FOOD & DRINK,,,,
-q01,wyr_scene,scene_q09_01_pizza_burgers.png,ROUND 1: FOOD & DRINK,1,Pizza 🍕  OR  Burgers 🍔?,No wrong answer!,Pizza|🍕|Burgers|🍔,,Animate VS reveal.
-q02,wyr_scene,scene_q09_02_coffee_tea.png,ROUND 1: FOOD & DRINK,2,Coffee ☕  OR  Tea 🍵?,No wrong answer!,Coffee|☕|Tea|🍵,,Animate VS reveal.
-q03,wyr_scene,scene_q09_03_sushi_tacos.png,ROUND 1: FOOD & DRINK,3,Sushi 🍣  OR  Tacos 🌮?,No wrong answer!,Sushi|🍣|Tacos|🌮,,Animate VS reveal.
-q04,wyr_scene,scene_q09_04_sweet_salty.png,ROUND 1: FOOD & DRINK,4,Sweet 🍰  OR  Salty 🍟?,No wrong answer!,Sweet|🍰|Salty|🍟,,Animate VS reveal.
-q05,wyr_scene,scene_q09_05_cook_at_home_eat_out.png,ROUND 1: FOOD & DRINK,5,Cook at home 🍳  OR  Eat out 🍽️?,No wrong answer!,Cook at home|🍳|Eat out|🍽️,,Animate VS reveal.
+q01,question_scene,scene_q09_01_pizza_burgers.png,ROUND 1: FOOD & DRINK,1,Pizza 🍕  OR  Burgers 🍔?,No wrong answer!,Pizza|🍕|Burgers|🍔,,Animate VS reveal.
+q02,question_scene,scene_q09_02_coffee_tea.png,ROUND 1: FOOD & DRINK,2,Coffee ☕  OR  Tea 🍵?,No wrong answer!,Coffee|☕|Tea|🍵,,Animate VS reveal.
+q03,question_scene,scene_q09_03_sushi_tacos.png,ROUND 1: FOOD & DRINK,3,Sushi 🍣  OR  Tacos 🌮?,No wrong answer!,Sushi|🍣|Tacos|🌮,,Animate VS reveal.
+q04,question_scene,scene_q09_04_sweet_salty.png,ROUND 1: FOOD & DRINK,4,Sweet 🍰  OR  Salty 🍟?,No wrong answer!,Sweet|🍰|Salty|🍟,,Animate VS reveal.
+q05,question_scene,scene_q09_05_cook_at_home_eat_out.png,ROUND 1: FOOD & DRINK,5,Cook at home 🍳  OR  Eat out 🍽️?,No wrong answer!,Cook at home|🍳|Eat out|🍽️,,Animate VS reveal.
 round_02,title_card,round_02.png,ROUND 2: TRAVEL,,ROUND 2: TRAVEL,,,,
-q06,wyr_scene,scene_q09_06_beach_mountains.png,ROUND 2: TRAVEL,6,Beach 🏖️  OR  Mountains 🏔️?,No wrong answer!,Beach|🏖️|Mountains|🏔️,,Animate VS reveal.
-q07,wyr_scene,scene_q09_07_fly_drive.png,ROUND 2: TRAVEL,7,Fly ✈️  OR  Drive 🚗?,No wrong answer!,Fly|✈️|Drive|🚗,,Animate VS reveal.
-q08,wyr_scene,scene_q09_08_new_york_los_angeles.png,ROUND 2: TRAVEL,8,New York 🗽  OR  Los Angeles 🌴?,No wrong answer!,New York|🗽|Los Angeles|🌴,,Animate VS reveal.
-q09,wyr_scene,scene_q09_09_camping_hotel.png,ROUND 2: TRAVEL,9,Camping ⛺  OR  Hotel 🏨?,No wrong answer!,Camping|⛺|Hotel|🏨,,Animate VS reveal.
-q10,wyr_scene,scene_q09_10_explore_relax.png,ROUND 2: TRAVEL,10,Explore 🗺️  OR  Relax 🏝️?,No wrong answer!,Explore|🗺️|Relax|🏝️,,Animate VS reveal.
+q06,question_scene,scene_q09_06_beach_mountains.png,ROUND 2: TRAVEL,6,Beach 🏖️  OR  Mountains 🏔️?,No wrong answer!,Beach|🏖️|Mountains|🏔️,,Animate VS reveal.
+q07,question_scene,scene_q09_07_fly_drive.png,ROUND 2: TRAVEL,7,Fly ✈️  OR  Drive 🚗?,No wrong answer!,Fly|✈️|Drive|🚗,,Animate VS reveal.
+q08,question_scene,scene_q09_08_new_york_los_angeles.png,ROUND 2: TRAVEL,8,New York 🗽  OR  Los Angeles 🌴?,No wrong answer!,New York|🗽|Los Angeles|🌴,,Animate VS reveal.
+q09,question_scene,scene_q09_09_camping_hotel.png,ROUND 2: TRAVEL,9,Camping ⛺  OR  Hotel 🏨?,No wrong answer!,Camping|⛺|Hotel|🏨,,Animate VS reveal.
+q10,question_scene,scene_q09_10_explore_relax.png,ROUND 2: TRAVEL,10,Explore 🗺️  OR  Relax 🏝️?,No wrong answer!,Explore|🗺️|Relax|🏝️,,Animate VS reveal.
 round_03,title_card,round_03.png,ROUND 3: FUN,,ROUND 3: FUN,,,,
-q11,wyr_scene,scene_q09_11_fly_invisible.png,ROUND 3: FUN,11,Fly 🦸  OR  Invisible 👻?,No wrong answer!,Fly|🦸|Invisible|👻,,Animate VS reveal.
-q12,wyr_scene,scene_q09_12_super_rich_super_famous.png,ROUND 3: FUN,12,Super Rich 💰  OR  Super Famous 🌟?,No wrong answer!,Super Rich|💰|Super Famous|🌟,,Animate VS reveal.
-q13,wyr_scene,scene_q09_13_dogs_cats.png,ROUND 3: FUN,13,Dogs 🐶  OR  Cats 🐱?,No wrong answer!,Dogs|🐶|Cats|🐱,,Animate VS reveal.
-q14,wyr_scene,scene_q09_14_time_travel_past_time_travel_future.png,ROUND 3: FUN,14,Time Travel Past 🏛️  OR  Time Travel Future 🚀?,No wrong answer!,Time Travel Past|🏛️|Time Travel Future|🚀,,Animate VS reveal.
-q15,wyr_scene,scene_q09_15_summer_winter.png,ROUND 3: FUN,15,Summer ☀️  OR  Winter ❄️?,No wrong answer!,Summer|☀️|Winter|❄️,,Animate VS reveal.
+q11,question_scene,scene_q09_11_fly_invisible.png,ROUND 3: FUN,11,Fly 🦸  OR  Invisible 👻?,No wrong answer!,Fly|🦸|Invisible|👻,,Animate VS reveal.
+q12,question_scene,scene_q09_12_super_rich_super_famous.png,ROUND 3: FUN,12,Super Rich 💰  OR  Super Famous 🌟?,No wrong answer!,Super Rich|💰|Super Famous|🌟,,Animate VS reveal.
+q13,question_scene,scene_q09_13_dogs_cats.png,ROUND 3: FUN,13,Dogs 🐶  OR  Cats 🐱?,No wrong answer!,Dogs|🐶|Cats|🐱,,Animate VS reveal.
+q14,question_scene,scene_q09_14_time_travel_past_time_travel_future.png,ROUND 3: FUN,14,Time Travel Past 🏛️  OR  Time Travel Future 🚀?,No wrong answer!,Time Travel Past|🏛️|Time Travel Future|🚀,,Animate VS reveal.
+q15,question_scene,scene_q09_15_summer_winter.png,ROUND 3: FUN,15,Summer ☀️  OR  Winter ❄️?,No wrong answer!,Summer|☀️|Winter|❄️,,Animate VS reveal.
 outro,title_card,outro_quiz9.png,Outro,,What did you choose?,,,,

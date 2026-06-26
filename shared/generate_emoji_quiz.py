@@ -362,7 +362,7 @@ def main():
                 clean_text = clean_text  # keep round text
             make_title_card(clean_text or "QUIZ TIME", theme, out_path, big_emoji)
             print(f"  ✅ {fname}")
-        elif asset_type == "wyr_scene":
+        elif asset_type == "wyr_scene" or "|" in row.get("main_visual_clue",""):
             clue = row.get("main_visual_clue","").strip()
             make_wyr_scene(clue, q_num, theme, out_path)
             print(f"  ✅ {fname}  (WYR)")
