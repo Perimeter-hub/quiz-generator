@@ -24,6 +24,11 @@ W, H        = 1280, 720
 _folder  = os.path.basename(os.path.abspath("."))
 OUTPUT   = f"{_folder}.mp4"
 
+# CLEAN_STYLE: quizzes where the question text is already baked into the image
+# (state shapes, emoji quizzes, etc). For these, don't draw duplicate text bars.
+# quiz2 = state shapes, quiz5-10 = future visual quizzes
+CLEAN_STYLE = _folder in ("quiz2", "quiz5", "quiz6", "quiz7", "quiz8", "quiz9", "quiz10")
+
 T_TITLE    = 4.0
 T_QUESTION = 5.0
 T_THINKING = 6.0
@@ -249,15 +254,20 @@ def make_segments(row):
     segs     = []
 
     if atype == "title_card":
-        img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if qtext else base.copy()
-        img = add_avatar(img)
+        if CLEAN_STYLE:
+            # Title text already baked into image — no duplicate bar
+            img = add_avatar(base.copy())
+        else:
+            img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if qtext else base.copy()
+            img = add_avatar(img)
         segs.append((img, T_TITLE, "title"))
 
     elif atype == "question_scene":
         img_q = base.copy()
         if qnum:
-            img_q = draw_bar(img_q, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
-        img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
+            img_q = draw_bar(img_q, f"Q{qnum}", 0.07, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
+        # Question text positioned at 0.20 — below the Q-number badge, no overlap
+        img_q = draw_bar(img_q, qtext, 0.20, COL_Q_BAR, COL_WHITE, fsize=34, bold=True)
         img_q = add_avatar(img_q)
         segs.append((img_q, T_QUESTION, "question"))
 
@@ -266,9 +276,9 @@ def make_segments(row):
 
         img_a = base.copy()
         if qnum:
-            img_a = draw_bar(img_a, f"Q{qnum}", 0.10, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
-        img_a = draw_bar(img_a, qtext,          0.55, COL_Q_BAR, COL_WHITE, fsize=30, bold=False)
-        img_a = draw_bar(img_a, f"✓  {answer}", 0.80, COL_A_BAR, COL_YELLOW, fsize=46, bold=True)
+            img_a = draw_bar(img_a, f"Q{qnum}", 0.07, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
+        img_a = draw_bar(img_a, qtext, 0.20, COL_Q_BAR, COL_WHITE, fsize=30, bold=False)
+        img_a = draw_bar(img_a, f"✓  {answer}", 0.82, COL_A_BAR, COL_YELLOW, fsize=48, bold=True)
         img_a = add_avatar(img_a)
         segs.append((img_a, T_ANSWER, "answer"))
 
