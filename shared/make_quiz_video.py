@@ -263,10 +263,14 @@ def make_segments(row):
         segs.append((img, T_TITLE, "title"))
 
     elif atype == "question_scene":
-        # No Q-number badge (number is already in the image, top-right)
-        # Question text stays at the bottom (0.82)
+        # No Q-number badge anywhere (number is in the image or not needed)
         img_q = base.copy()
-        img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
+        if not CLEAN_STYLE:
+            # Photo-scene quizzes (quiz1,3,4): question text drawn at bottom
+            img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
+        else:
+            # CLEAN_STYLE (quiz2,5-10): question already baked into image, draw it at bottom anyway
+            img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
         img_q = add_avatar(img_q)
         segs.append((img_q, T_QUESTION, "question"))
 
