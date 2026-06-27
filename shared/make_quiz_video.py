@@ -98,7 +98,7 @@ def draw_countdown(img, sec):
     draw = ImageDraw.Draw(overlay)
     font = load_font(60, bold=True)
     txt = str(sec)
-    cx, cy, r = 90, 90, 52
+    cx, cy, r = W - 90, 90, 52
     draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=(0,0,0,190))
     bb = draw.textbbox((0,0), txt, font=font)
     draw.text((cx-(bb[2]-bb[0])//2, cy-(bb[3]-bb[1])//2-4), txt, font=font, fill=COL_YELLOW)
@@ -248,7 +248,7 @@ def draw_qnum_badge(img, qnum, total=50):
     """Draw a clean purple circle badge with question number in top-right corner."""
     overlay = Image.new("RGBA", (W, H), (0,0,0,0))
     draw = ImageDraw.Draw(overlay)
-    cx, cy, r = W - 80, 80, 56
+    cx, cy, r = 80, 80, 56
     # Purple circle matching brand
     draw.ellipse([(cx-r, cy-r), (cx+r, cy+r)], fill=(90, 30, 160, 235))
     draw.ellipse([(cx-r, cy-r), (cx+r, cy+r)], outline=(255, 230, 50, 255), width=4)
