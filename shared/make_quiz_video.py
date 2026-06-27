@@ -98,7 +98,7 @@ def draw_countdown(img, sec):
     draw = ImageDraw.Draw(overlay)
     font = load_font(60, bold=True)
     txt = str(sec)
-    cx, cy, r = W-90, 90, 52
+    cx, cy, r = 90, 90, 52
     draw.ellipse([(cx-r,cy-r),(cx+r,cy+r)], fill=(0,0,0,190))
     bb = draw.textbbox((0,0), txt, font=font)
     draw.text((cx-(bb[2]-bb[0])//2, cy-(bb[3]-bb[1])//2-4), txt, font=font, fill=COL_YELLOW)
@@ -244,6 +244,27 @@ def load_base(img_path):
     arr[:,:] = [15, 20, 50]
     return Image.fromarray(arr)
 
+def draw_qnum_badge(img, qnum, total=50):
+    """Draw a clean purple circle badge with question number in top-right corner."""
+    overlay = Image.new("RGBA", (W, H), (0,0,0,0))
+    draw = ImageDraw.Draw(overlay)
+    cx, cy, r = W - 80, 80, 56
+    # Purple circle matching brand
+    draw.ellipse([(cx-r, cy-r), (cx+r, cy+r)], fill=(90, 30, 160, 235))
+    draw.ellipse([(cx-r, cy-r), (cx+r, cy+r)], outline=(255, 230, 50, 255), width=4)
+    # Number
+    f_num = load_font(40, bold=True)
+    txt = str(qnum)
+    bb = draw.textbbox((0,0), txt, font=f_num)
+    draw.text((cx-(bb[2]-bb[0])//2, cy-22), txt, font=f_num, fill=(255,255,255))
+    # "/50" small below
+    f_small = load_font(20, bold=True)
+    sub = f"/{total}"
+    bb2 = draw.textbbox((0,0), sub, font=f_small)
+    draw.text((cx-(bb2[2]-bb2[0])//2, cy+14), sub, font=f_small, fill=(255,230,50))
+    return Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
+
+
 def make_segments(row):
     img_path = os.path.join(IMAGES_DIR, row["file_name"])
     atype    = row["asset_type"]
@@ -271,14 +292,20 @@ def make_segments(row):
         else:
             # CLEAN_STYLE (quiz2,5-10): question already baked into image, draw it at bottom anyway
             img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
+        # Question number badge top-right (only for photo-scenes — CLEAN_STYLE has it in image)
+        if qnum and not CLEAN_STYLE:
+            img_q = draw_qnum_badge(img_q, qnum)
         img_q = add_avatar(img_q)
         segs.append((img_q, T_QUESTION, "question"))
 
         for s in range(int(T_THINKING), 0, -1):
-            segs.append((draw_countdown(add_avatar(img_q.copy()), s), 1.0, "countdown"))
+            cd_frame = draw_countdown(img_q.copy(), s)
+            segs.append((cd_frame, 1.0, "countdown"))
 
         img_a = base.copy()
         img_a = draw_bar(img_a, f"✓  {answer}", 0.82, COL_A_BAR, COL_YELLOW, fsize=48, bold=True)
+        if qnum and not CLEAN_STYLE:
+            img_a = draw_qnum_badge(img_a, qnum)
         img_a = add_avatar(img_a)
         segs.append((img_a, T_ANSWER, "answer"))
 
