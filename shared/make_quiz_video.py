@@ -263,11 +263,10 @@ def make_segments(row):
         segs.append((img, T_TITLE, "title"))
 
     elif atype == "question_scene":
+        # No Q-number badge (number is already in the image, top-right)
+        # Question text stays at the bottom (0.82)
         img_q = base.copy()
-        if qnum:
-            img_q = draw_bar(img_q, f"Q{qnum}", 0.07, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
-        # Question text positioned at 0.20 — below the Q-number badge, no overlap
-        img_q = draw_bar(img_q, qtext, 0.20, COL_Q_BAR, COL_WHITE, fsize=34, bold=True)
+        img_q = draw_bar(img_q, qtext, 0.82, COL_Q_BAR, COL_WHITE, fsize=36, bold=True)
         img_q = add_avatar(img_q)
         segs.append((img_q, T_QUESTION, "question"))
 
@@ -275,9 +274,6 @@ def make_segments(row):
             segs.append((draw_countdown(add_avatar(img_q.copy()), s), 1.0, "countdown"))
 
         img_a = base.copy()
-        if qnum:
-            img_a = draw_bar(img_a, f"Q{qnum}", 0.07, (0,0,60,160), COL_CYAN, fsize=26, bold=False, pad=10)
-        img_a = draw_bar(img_a, qtext, 0.20, COL_Q_BAR, COL_WHITE, fsize=30, bold=False)
         img_a = draw_bar(img_a, f"✓  {answer}", 0.82, COL_A_BAR, COL_YELLOW, fsize=48, bold=True)
         img_a = add_avatar(img_a)
         segs.append((img_a, T_ANSWER, "answer"))
