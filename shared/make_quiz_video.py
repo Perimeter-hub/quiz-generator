@@ -311,19 +311,20 @@ def make_segments(row):
     segs     = []
 
     if atype == "title_card":
+        img = base.copy()
+        if not CLEAN_STYLE and qtext:
+            img = draw_bar(img, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True)
+        # Cover the old baked-in yellow "QUIZ GO!" pill at the bottom of CLEAN_STYLE images.
+        # Sample background near bottom-center-left (avoiding the pill which is centered).
         if CLEAN_STYLE:
-            # Title text already baked into image — no duplicate bar
-            img = add_avatar(base.copy())
-        else:
-            img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if qtext else base.copy()
-            img = add_avatar(img)
-        # Cover any yellow/colored bar at very bottom of image (from old generated images)
-        from PIL import ImageDraw as _ID
-        _overlay = Image.new("RGBA", (W, H), (0,0,0,0))
-        _d = _ID.Draw(_overlay)
-        _d.rectangle([(0, H-30), (W, H)], fill=(15, 15, 40, 255))
-        img = Image.alpha_composite(img.convert("RGBA"), _overlay).convert("RGB")
-        # Purple pill channel badge bottom-center on all title cards
+            _bg = img.convert("RGB").getpixel((60, H - 130))
+            from PIL import ImageDraw as _ID
+            _ov = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+            _ID.Draw(_ov).rectangle([(0, H - 115), (W, H)], fill=_bg + (255,))
+            img = Image.alpha_composite(img.convert("RGBA"), _ov).convert("RGB")
+        # Avatar (bottom-left) goes ON TOP of the cover
+        img = add_avatar(img)
+        # Purple pill channel badge bottom-center
         img = add_channel_badge(img)
         segs.append((img, T_TITLE, "title"))
 
