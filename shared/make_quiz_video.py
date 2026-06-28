@@ -238,18 +238,18 @@ def make_finale_frames(n_frames):
         # Score prompt box
         draw.rounded_rectangle([(W//2-280, 375),(W//2+280, 445)],
                                 radius=12, fill=(50,20,90))
-        bb3 = draw.textbbox((0,0), "Drop your score in the comments! 👇", font=f_sm)
+        bb3 = draw.textbbox((0,0), "Drop your score in the comments!", font=f_sm)
         tx3 = (W-(bb3[2]-bb3[0]))//2
-        draw.text((tx3, 393), "Drop your score in the comments! 👇", font=f_sm, fill=(255,230,100))
+        draw.text((tx3, 393), "Drop your score in the comments!", font=f_sm, fill=(255,230,100))
 
         # Subscribe CTA — pulsing
         sub_alpha = int(200 + 55 * math.sin(t * 5))
         draw.rounded_rectangle([(W//2-340, 475),(W//2+340, 555)],
                                 radius=16, fill=(200,20,20))
-        bb4 = draw.textbbox((0,0), f"🔔 SUBSCRIBE → {CHANNEL_NAME}", font=f_sub)
+        bb4 = draw.textbbox((0,0), f"SUBSCRIBE → {CHANNEL_NAME}", font=f_sub)
         tx4 = (W-(bb4[2]-bb4[0]))//2
-        draw.text((tx4+2, 494), f"🔔 SUBSCRIBE → {CHANNEL_NAME}", font=f_sub, fill=(0,0,0))
-        draw.text((tx4, 492), f"🔔 SUBSCRIBE → {CHANNEL_NAME}", font=f_sub, fill=(255,255,255))
+        draw.text((tx4+2, 494), f"SUBSCRIBE → {CHANNEL_NAME}", font=f_sub, fill=(0,0,0))
+        draw.text((tx4, 492), f"SUBSCRIBE → {CHANNEL_NAME}", font=f_sub, fill=(255,255,255))
 
         # Avatar bottom-left
         img = add_avatar(img)
