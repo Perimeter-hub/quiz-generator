@@ -246,10 +246,10 @@ def make_finale_frames(n_frames):
         sub_alpha = int(200 + 55 * math.sin(t * 5))
         draw.rounded_rectangle([(W//2-340, 475),(W//2+340, 555)],
                                 radius=16, fill=(200,20,20))
-        bb4 = draw.textbbox((0,0), f"SUBSCRIBE → {CHANNEL_NAME}", font=f_sub)
+        bb4 = draw.textbbox((0,0), f"SUBSCRIBE  {CHANNEL_NAME}", font=f_sub)
         tx4 = (W-(bb4[2]-bb4[0]))//2
-        draw.text((tx4+2, 494), f"SUBSCRIBE → {CHANNEL_NAME}", font=f_sub, fill=(0,0,0))
-        draw.text((tx4, 492), f"SUBSCRIBE → {CHANNEL_NAME}", font=f_sub, fill=(255,255,255))
+        draw.text((tx4+2, 494), f"SUBSCRIBE  {CHANNEL_NAME}", font=f_sub, fill=(0,0,0))
+        draw.text((tx4, 492), f"SUBSCRIBE  {CHANNEL_NAME}", font=f_sub, fill=(255,255,255))
 
         # Avatar bottom-left
         img = add_avatar(img)
@@ -317,6 +317,12 @@ def make_segments(row):
         else:
             img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if qtext else base.copy()
             img = add_avatar(img)
+        # Cover any yellow/colored bar at very bottom of image (from old generated images)
+        from PIL import ImageDraw as _ID
+        _overlay = Image.new("RGBA", (W, H), (0,0,0,0))
+        _d = _ID.Draw(_overlay)
+        _d.rectangle([(0, H-30), (W, H)], fill=(15, 15, 40, 255))
+        img = Image.alpha_composite(img.convert("RGBA"), _overlay).convert("RGB")
         # Purple pill channel badge bottom-center on all title cards
         img = add_channel_badge(img)
         segs.append((img, T_TITLE, "title"))
