@@ -8,7 +8,7 @@ Usage: python generate_images_de_fussball.py
 import requests, os, time, csv
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
-API_KEY   = "HiGIQ9YkIi8EheOqsQIihBv4LUlRqN1IPfFU06ahv9xRawbfRULcg3jJb5CM"
+API_KEY   = os.getenv("MODELSLAB_API_KEY", "HiGIQ9YkIi8EheOqsQIihBv4LUlRqN1IPfFU06ahv9xRawbfRULcg3jJb5CM")
 API_URL   = "https://modelslab.com/api/v6/realtime/text2img"
 FETCH_URL = "https://modelslab.com/api/v6/realtime/fetch/"
 CSV_FILE  = "batch_generation_queue.csv"

@@ -12,7 +12,7 @@ Run from any quiz folder (quiz1/, quiz2/, quiz3/, quiz4/)
 
 import os, requests, time
 
-API_KEY = "sk_e17e9bf41d53a46fa2d81a8ac0a88ac5ae72962849d1e035"
+API_KEY = os.getenv("ELEVENLABS_API_KEY", "sk_e17e9bf41d53a46fa2d81a8ac0a88ac5ae72962849d1e035"
 
 SOUND_URL = "https://api.elevenlabs.io/v1/sound-generation"
 MUSIC_URL = "https://api.elevenlabs.io/v1/text-to-music"
