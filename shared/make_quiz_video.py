@@ -141,6 +141,28 @@ def add_avatar(img):
     overlay.paste(av, (16, H - av.height - 16), av)
     return Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
 
+def add_channel_badge(img):
+    """Draw purple pill with @QuizBlitzGo at bottom-center — for title cards."""
+    overlay = Image.new("RGBA", (W, H), (0,0,0,0))
+    draw = ImageDraw.Draw(overlay)
+    font = load_font(36, bold=True)
+    text = CHANNEL_NAME
+    bb = draw.textbbox((0, 0), text, font=font)
+    tw = bb[2] - bb[0]
+    th = bb[3] - bb[1]
+    pad_x, pad_y = 40, 16
+    pill_w = tw + pad_x * 2
+    pill_h = th + pad_y * 2
+    pill_x = (W - pill_w) // 2
+    pill_y = H - pill_h - 36
+    draw.rounded_rectangle(
+        [(pill_x, pill_y), (pill_x + pill_w, pill_y + pill_h)],
+        radius=pill_h // 2,
+        fill=(107, 33, 212, 240)
+    )
+    draw.text((pill_x + pad_x, pill_y + pad_y - 2), text, font=font, fill=(255, 255, 255))
+    return Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
+
 # ── FINALE SCREEN ─────────────────────────────────────────────────────────────
 def make_finale_frames(n_frames):
     """Generate n_frames of bright finale with animated fireworks + subscribe CTA."""
@@ -295,6 +317,8 @@ def make_segments(row):
         else:
             img = draw_bar(base, qtext, 0.88, COL_T_BAR, COL_WHITE, fsize=44, bold=True) if qtext else base.copy()
             img = add_avatar(img)
+        # Purple pill channel badge bottom-center on all title cards
+        img = add_channel_badge(img)
         segs.append((img, T_TITLE, "title"))
 
     elif atype == "question_scene":
