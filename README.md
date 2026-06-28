@@ -1,43 +1,78 @@
-# 🎬 Quiz Generator
+# Quiz Generator — Quiz Business / Quiz Blitz Go
 
 Automated pipeline for generating YouTube quiz MP4 videos.
-Each quiz produces ~13 minutes of video with questions, countdowns, and answer reveals.
+Each quiz produces ~13 minutes of video with questions, countdowns, answer reveals, music and animated finale.
+
+**Channel:** [@QuizBlitzGo](https://youtube.com/@QuizBlitzGo)
+**GitHub:** [Perimeter-hub/quiz-generator](https://github.com/Perimeter-hub/quiz-generator)
 
 ## Quizzes
 
-| # | Topic | Language | Images | Status |
-|---|-------|----------|--------|--------|
-| 1 | 50 States Challenge | English 🇺🇸 | Stable Diffusion | ✅ Done |
-| 2 | Guess the US State by Shape | English 🇺🇸 | GeoJSON (free) | ✅ Done |
-| 3 | Kennst du den deutschen Fußball? | German 🇩🇪 | Stable Diffusion | ✅ Done |
+| # | Topic | Language | Type | Status |
+|---|-------|----------|------|--------|
+| Quiz 1 | 50 States Challenge | English 🇺🇸 | Photo scenes | ✅ Published |
+| Quiz 2 | Guess the US State by Shape | English 🇺🇸 | GeoJSON shapes | ✅ Published |
+| Quiz 3 | Kennst du den deutschen Fußball? | German 🇩🇪 | Photo scenes | ✅ Ready |
+| Quiz 4 | Iconic American TV Shows | English 🇺🇸 | Photo scenes | ✅ Ready |
+| Quiz 5 | Guess the Country by Flag | English 🇺🇸 | Flag images | ✅ Ready |
+| Quiz 6 | World Capital Cities | English 🇺🇸 | Photo scenes | ✅ Ready |
+| Quiz 8 | Guess the Brand by Emoji | English 🇺🇸 | Emoji (CLEAN) | ✅ Ready |
+| Quiz 10 | Guess the Sport by Emoji | English 🇺🇸 | Emoji (CLEAN) | ✅ Ready |
+
+## Video features (make_quiz_video.py v2)
+
+- Avatar watermark (@QuizBlitzGo) on every frame — bottom left
+- Purple pill channel badge on all title/round cards — bottom center
+- Question number badge (purple circle N/50) — top left for photo-scene quizzes
+- Countdown timer — top right
+- Question text — bottom bar
+- Answer reveal — green bar with answer
+- Animated fireworks finale (8 sec) replacing outro
+- Background music (question / countdown / answer phases)
+- Emoji auto-stripped from text bars (no □□□)
+- CLEAN_STYLE auto-detected for quiz2, quiz5-10 (text baked into images)
 
 ## Setup
 
 ```bash
-pip install requests moviepy pillow geopandas python-dotenv
+git clone https://github.com/Perimeter-hub/quiz-generator
+cd quiz-generator
 cp .env.example .env
 # Edit .env and add your API keys
+pip install requests moviepy pillow geopandas python-dotenv
 ```
 
-## Usage
+## Workflow for each quiz
 
-### Generate images
+### Step 1 — Generate images
+```bash
+cd quiz1/   # or quiz3, quiz4, quiz5, quiz6, quiz8, quiz10
+python generate_images.py    # ~20 min via ModelsLab API
+
+# For quiz2 (state shapes — FREE, no API needed):
+cd quiz2/
+python generate_shapes.py
+```
+
+### Step 2 — Generate music (one time, copy to all quizzes)
 ```bash
 cd quiz1/
-python generate_images.py
-
-cd quiz2/
-python generate_shapes.py   # free, no API needed
-
-cd quiz3/
-python generate_images.py
+python ../shared/generate_music.py
+# Copy to other quizzes:
+cp music_*.mp3 ../quiz2/ ../quiz3/ ../quiz4/
 ```
 
-### Assemble video (works for all quizzes)
+### Step 3 — Assemble video
 ```bash
-cd quiz1/   # or quiz2/ or quiz3/
+cd quiz1/   # run from inside the quiz folder
 python ../shared/make_quiz_video.py
-# Output: quiz_video.mp4
+# Output: quiz1.mp4
+```
+
+### Step 4 — Add intro card (YouTube thumbnail)
+```bash
+python ../shared/generate_intro_card.py
+# Output: quiz1_final.mp4  (with 3-sec intro)
 ```
 
 ## Video structure per question
@@ -47,49 +82,51 @@ python ../shared/make_quiz_video.py
 | Question shown | 5 sec |
 | Countdown 6→1 | 6 sec |
 | Answer reveal | 4 sec |
+| Round/title cards | 4 sec each |
+| Animated finale | 8 sec |
 
 **Total per quiz: ~13 minutes**
 
-## Music support
+## Music files
 
-Place these MP3 files in your quiz folder to enable background music:
-- `music_question.mp3` — plays during question (volume 40%)
-- `music_countdown.mp3` — plays during countdown (volume 60%)
-- `music_answer.mp3` — plays during answer reveal (volume 70%)
+Place in each quiz folder to enable background music:
+- `music_question.mp3` — during question (40% volume)
+- `music_countdown.mp3` — during countdown (60% volume)  
+- `music_answer.mp3` — during answer reveal (70% volume)
 
-Generate free tracks at [suno.com](https://suno.com).
+Generate free tracks at [suno.com](https://suno.com) or via ElevenLabs API.
 
 ## API Keys
 
 | Service | Used for | Get key |
 |---------|----------|---------|
-| ModelsLab | Image generation | [modelslab.com](https://modelslab.com/dashboard) |
-| Poe (optional) | Higher quality images | [poe.com/api_key](https://poe.com/api_key) |
+| ModelsLab | Image generation (quiz1,3,4,5,6,8,10) | [modelslab.com](https://modelslab.com/dashboard) |
+| ElevenLabs | Music generation | [elevenlabs.io](https://elevenlabs.io) |
 
-## Adding a new quiz
+## Channel strategy
 
-1. Create folder `quiz4/`
-2. Create `batch_generation_queue.csv` with columns:
-   `asset_id, asset_type, file_name, question_text, answer, question_number, round_number, prompt_hint`
-3. Add image generator script
-4. Run `python ../shared/make_quiz_video.py`
+Separate YouTube channels per language for maximum algorithm targeting:
+- **Quiz Blitz Go** (@QuizBlitzGo) — English, US audience
+- **Quiz Blitz DE** — German, DE/AT/CH audience (high CPM)
+- **Quiz Blitz ES** — Spanish, Latin America + Spain
+- **Quiz Blitz PT** — Portuguese, Brazil
 
 ## Project structure
 
 ```
-quiz_generator/
+quiz-generator/
 ├── .env.example
 ├── .gitignore
 ├── README.md
 ├── shared/
-│   └── make_quiz_video.py      ← universal video assembler
-├── quiz1/
-│   ├── generate_images.py
+│   ├── make_quiz_video.py       ← universal video assembler v2
+│   ├── generate_music.py        ← ElevenLabs music generator
+│   ├── generate_intro_card.py   ← YouTube thumbnail intro card
+│   ├── generate_thumbnails.py   ← static PNG thumbnails
+│   └── channel_avatar.png       ← @QuizBlitzGo avatar
+├── quiz1/  quiz2/  quiz3/  quiz4/
+├── quiz5/  quiz6/  quiz8/  quiz10/
+│   ├── generate_images.py  (or generate_shapes.py for quiz2)
 │   └── batch_generation_queue.csv
-├── quiz2/
-│   ├── generate_shapes.py
-│   └── batch_generation_queue.csv
-└── quiz3/
-    ├── generate_images.py
-    └── batch_generation_queue.csv
+└── Quiz Generator widget (multilingual, viral topic research)
 ```
