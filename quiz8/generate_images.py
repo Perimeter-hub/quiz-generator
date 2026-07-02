@@ -17,7 +17,7 @@ OUTPUT_DIR = "images_and_videos"
 NEG = "blurry, low quality, distorted, ugly, watermark, text, letters, words, writing, typography, cartoon, anime"
 
 IMAGES = [
-    ("opening_quiz8.png", "Create an original 16:9 quiz-show title card for a fast food logo quiz. Burgers, pizza, tacos, fries arranged colorfully. Text: GUESS THE FAST FOOD! Bright food colors, appetizing, no copied branding."),
+    ("opening_quiz8.png", "Create an original 16:9 quiz-show title card for a brand guessing game using emoji clues. Colorful emoji icons like apple, ghost, music note arranged playfully. Text: GUESS THE BRAND! Bright colors, playful, no copied branding or trademarked imagery."),
     ("round_01_easy.png", "Create an original 16:9 bright 2D quiz-show round card reading ROUND 1: EVERYONE KNOWS THESE. Bold clean typography, original design."),
     ("scene_q08_01_mcdonalds.png", "Create original 16:9 quiz graphic. Show a bold original golden yellow M arch shape (stylized, not copied) on red background. Question: What fast food chain is this? Answer: McDonald's. Bold readable text, original design."),
     ("scene_q08_02_kfc.png", "Create original 16:9 quiz graphic. Show original striped red-white bucket icon on red background, colonel character hint. Question: What fast food chain? Answer: KFC. Original design only."),
