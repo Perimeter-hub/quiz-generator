@@ -66,11 +66,11 @@ QUIZ_CONFIGS = {
     "quiz6": {
         "bg":       "#1A1A1A",
         "accent":   "#FFCC00",
-        "number":   "50",
+        "number":   "30",
         "line1":    "WORLD CAPITALS",
         "line2":    "CAN YOU NAME THEM ALL?",
         "line3":    "ONLY TRUE EXPERTS PASS!",
-        "badge":    "ONLY 4% SCORE 50/50!",
+        "badge":    "ONLY 4% SCORE 30/30!",
         "badge_bg": "#3B6DFF",
     },
     "quiz8": {
