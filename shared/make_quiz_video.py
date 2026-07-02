@@ -297,6 +297,11 @@ def strip_emoji(text):
         "\U0001FA00-\U0001FA6F"    # chess, symbols
         "\U0001FA70-\U0001FAFF"    # symbols extended
         "\U00002702-\U000027B0"    # dingbats
+        "\U0001F1E6-\U0001F1FF"    # regional indicators (flag emoji pairs)
+        "\U00002B00-\U00002BFF"    # arrows, stars
+        "\U0001F000-\U0001F0FF"    # mahjong/cards
+        "\U0000FE00-\U0000FE0F"    # variation selectors
+        "\U00002190-\U000021FF"    # arrows
         "]+", flags=re.UNICODE)
     return emoji_pattern.sub("", text).strip()
 
