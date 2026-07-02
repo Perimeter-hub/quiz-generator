@@ -1,0 +1,36 @@
+asset_id,asset_type,file_name,round,question_number,question_text,answer,main_visual_clue,image_prompt,video_prompt
+opening_title,title_card,opening_quiz8.png,Opening,,Guess the Brand by Emoji! 🍎👻🎵,,brand emojis,,Animate title reveal.
+round_01,title_card,round_01_easy.png,ROUND 1: EASY,,ROUND 1: EASY,,,,
+q01,question_scene,scene_q08_01_apple.png,ROUND 1: EASY,1,What brand is this? 🍎,Apple,Apple emoji,,"Animate emoji reveal, 3-second pause, answer reading Apple."
+q02,question_scene,scene_q08_02_snapchat.png,ROUND 1: EASY,2,What brand is this? 👻,Snapchat,Snapchat emoji,,"Animate emoji reveal, 3-second pause, answer reading Snapchat."
+q03,question_scene,scene_q08_03_twitter___x.png,ROUND 1: EASY,3,What brand is this? 🐦,Twitter / X,Twitter / X emoji,,"Animate emoji reveal, 3-second pause, answer reading Twitter / X."
+q04,question_scene,scene_q08_04_mcdonalds.png,ROUND 1: EASY,4,What brand is this? 🍟🤡,McDonald's,McDonald's emoji,,"Animate emoji reveal, 3-second pause, answer reading McDonald's."
+q05,question_scene,scene_q08_05_youtube.png,ROUND 1: EASY,5,What brand is this? 📺▶️,YouTube,YouTube emoji,,"Animate emoji reveal, 3-second pause, answer reading YouTube."
+q06,question_scene,scene_q08_06_whatsapp.png,ROUND 1: EASY,6,What brand is this? 💬📞,WhatsApp,WhatsApp emoji,,"Animate emoji reveal, 3-second pause, answer reading WhatsApp."
+q07,question_scene,scene_q08_07_spotify.png,ROUND 1: EASY,7,What brand is this? 🎵🟢,Spotify,Spotify emoji,,"Animate emoji reveal, 3-second pause, answer reading Spotify."
+q08,question_scene,scene_q08_08_netflix.png,ROUND 1: EASY,8,What brand is this? 🎬🔴,Netflix,Netflix emoji,,"Animate emoji reveal, 3-second pause, answer reading Netflix."
+q09,question_scene,scene_q08_09_instagram.png,ROUND 1: EASY,9,What brand is this? 📷🌈,Instagram,Instagram emoji,,"Animate emoji reveal, 3-second pause, answer reading Instagram."
+q10,question_scene,scene_q08_10_airbnb.png,ROUND 1: EASY,10,What brand is this? 🏠🛏️,Airbnb,Airbnb emoji,,"Animate emoji reveal, 3-second pause, answer reading Airbnb."
+round_02,title_card,round_02_medium.png,ROUND 2: MEDIUM,,ROUND 2: MEDIUM,,,,
+q11,question_scene,scene_q08_11_shell.png,ROUND 2: MEDIUM,11,What brand is this? 🐚⛽,Shell,Shell emoji,,"Animate emoji reveal, 3-second pause, answer reading Shell."
+q12,question_scene,scene_q08_12_starbucks.png,ROUND 2: MEDIUM,12,What brand is this? ☕🧜,Starbucks,Starbucks emoji,,"Animate emoji reveal, 3-second pause, answer reading Starbucks."
+q13,question_scene,scene_q08_13_twitch.png,ROUND 2: MEDIUM,13,What brand is this? 🎮💜,Twitch,Twitch emoji,,"Animate emoji reveal, 3-second pause, answer reading Twitch."
+q14,question_scene,scene_q08_14_amazon.png,ROUND 2: MEDIUM,14,What brand is this? 📦😊,Amazon,Amazon emoji,,"Animate emoji reveal, 3-second pause, answer reading Amazon."
+q15,question_scene,scene_q08_15_paypal.png,ROUND 2: MEDIUM,15,What brand is this? 💳🅿️,PayPal,PayPal emoji,,"Animate emoji reveal, 3-second pause, answer reading PayPal."
+q16,question_scene,scene_q08_16_burger_king.png,ROUND 2: MEDIUM,16,What brand is this? 🍔👑,Burger King,Burger King emoji,,"Animate emoji reveal, 3-second pause, answer reading Burger King."
+q17,question_scene,scene_q08_17_red_bull.png,ROUND 2: MEDIUM,17,What brand is this? 🐂🔴,Red Bull,Red Bull emoji,,"Animate emoji reveal, 3-second pause, answer reading Red Bull."
+q18,question_scene,scene_q08_18_lego.png,ROUND 2: MEDIUM,18,What brand is this? 🧱🇩🇰,Lego,Lego emoji,,"Animate emoji reveal, 3-second pause, answer reading Lego."
+q19,question_scene,scene_q08_19_tinder.png,ROUND 2: MEDIUM,19,What brand is this? 🔥❤️,Tinder,Tinder emoji,,"Animate emoji reveal, 3-second pause, answer reading Tinder."
+q20,question_scene,scene_q08_20_discord.png,ROUND 2: MEDIUM,20,What brand is this? 🎮💬,Discord,Discord emoji,,"Animate emoji reveal, 3-second pause, answer reading Discord."
+round_03,title_card,round_03_tricky.png,ROUND 3: TRICKY,,ROUND 3: TRICKY,,,,
+q21,question_scene,scene_q08_21_pringles.png,ROUND 3: TRICKY,21,What brand is this? 🥔🥫,Pringles,Pringles emoji,,"Animate emoji reveal, 3-second pause, answer reading Pringles."
+q22,question_scene,scene_q08_22_nike.png,ROUND 3: TRICKY,22,What brand is this? ✔️👟,Nike,Nike emoji,,"Animate emoji reveal, 3-second pause, answer reading Nike."
+q23,question_scene,scene_q08_23_playboy.png,ROUND 3: TRICKY,23,What brand is this? 🐰🎩,Playboy,Playboy emoji,,"Animate emoji reveal, 3-second pause, answer reading Playboy."
+q24,question_scene,scene_q08_24_lacoste.png,ROUND 3: TRICKY,24,What brand is this? 🐊👕,Lacoste,Lacoste emoji,,"Animate emoji reveal, 3-second pause, answer reading Lacoste."
+q25,question_scene,scene_q08_25_pinterest.png,ROUND 3: TRICKY,25,What brand is this? 📌🅿️,Pinterest,Pinterest emoji,,"Animate emoji reveal, 3-second pause, answer reading Pinterest."
+q26,question_scene,scene_q08_26_wwf.png,ROUND 3: TRICKY,26,What brand is this? 🐼🌍,WWF,WWF emoji,,"Animate emoji reveal, 3-second pause, answer reading WWF."
+q27,question_scene,scene_q08_27_monopoly.png,ROUND 3: TRICKY,27,What brand is this? 🎩💰🎲,Monopoly,Monopoly emoji,,"Animate emoji reveal, 3-second pause, answer reading Monopoly."
+q28,question_scene,scene_q08_28_duracell.png,ROUND 3: TRICKY,28,What brand is this? 🔋🐰,Duracell,Duracell emoji,,"Animate emoji reveal, 3-second pause, answer reading Duracell."
+q29,question_scene,scene_q08_29_ferrari.png,ROUND 3: TRICKY,29,What brand is this? 🐎🏎️,Ferrari,Ferrari emoji,,"Animate emoji reveal, 3-second pause, answer reading Ferrari."
+q30,question_scene,scene_q08_30_bluetooth.png,ROUND 3: TRICKY,30,What brand is this? 🦷📶,Bluetooth,Bluetooth emoji,,"Animate emoji reveal, 3-second pause, answer reading Bluetooth."
+outro,title_card,outro_quiz8.png,Outro,,How many did you get right?,,scoreboard,,
