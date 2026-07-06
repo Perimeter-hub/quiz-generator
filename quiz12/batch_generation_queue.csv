@@ -1,0 +1,43 @@
+asset_id,asset_type,file_name,question_text,answer,question_number,round_number,prompt_hint
+opening_title,title_card,opening_title.png,"Can You Name the Movie From Just One Scene?",,,,
+round_01,title_card,round_01_easy_classics.png,"ROUND 1: EASY CLASSICS",,,,
+q01,question_scene,scene_q01_titanic.png,"Guess the movie from this scene","Titanic",1,1,"couple standing at bow of large ocean liner ship arms outstretched wind sunset romantic cinematic wide shot no text no people faces"
+q02,question_scene,scene_q02_jurassic_park.png,"Guess the movie from this scene","Jurassic Park",2,1,"tropical island jungle with towering dinosaur silhouette in misty rainforest cinematic wide shot no text"
+q03,question_scene,scene_q03_wizard_of_oz.png,"Guess the movie from this scene","The Wizard of Oz",3,1,"yellow brick road winding through colorful fantasy countryside toward emerald city cinematic wide shot no text"
+q04,question_scene,scene_q04_star_wars.png,"Guess the movie from this scene","Star Wars",4,1,"desert twin suns setting over sandy dunes distant planet landscape cinematic wide shot no text"
+q05,question_scene,scene_q05_home_alone.png,"Guess the movie from this scene","Home Alone",5,1,"cozy suburban house decorated for Christmas snow falling porch lights glowing cinematic wide shot no text no people"
+q06,question_scene,scene_q06_finding_nemo.png,"Guess the movie from this scene","Finding Nemo",6,1,"vibrant coral reef underwater scene tropical fish colorful anemones cinematic wide shot no text"
+q07,question_scene,scene_q07_jaws.png,"Guess the movie from this scene","Jaws",7,1,"ocean surface with shark fin cutting through water beach in background cinematic wide shot no text"
+q08,question_scene,scene_q08_the_matrix.png,"Guess the movie from this scene","The Matrix",8,1,"green digital code rain falling dark background futuristic cinematic wide shot no text"
+q09,question_scene,scene_q09_forrest_gump.png,"Guess the movie from this scene","Forrest Gump",9,1,"long empty road stretching through countryside bench beside it cinematic wide shot no text no people"
+q10,question_scene,scene_q10_the_lion_king.png,"Guess the movie from this scene","The Lion King",10,1,"African savanna sunrise tall rock formation overlooking golden grasslands cinematic wide shot no text"
+round_02,title_card,round_02_getting_harder.png,"ROUND 2: GETTING HARDER",,,,
+q11,question_scene,scene_q11_inception.png,"Guess the movie from this scene","Inception",11,2,"city street folding upward into itself impossible architecture dreamlike cinematic wide shot no text"
+q12,question_scene,scene_q12_the_shining.png,"Guess the movie from this scene","The Shining",12,2,"eerie empty hotel hallway red patterned carpet symmetrical corridor cinematic wide shot no text no people"
+q13,question_scene,scene_q13_back_to_future.png,"Guess the movie from this scene","Back to the Future",13,2,"silver sports car with glowing wheel trails on suburban street at night cinematic wide shot no text"
+q14,question_scene,scene_q14_e_t.png,"Guess the movie from this scene","E.T.",14,2,"bicycle silhouette flying across full moon night sky cinematic wide shot no text no people"
+q15,question_scene,scene_q15_jurassic_world.png,"Guess the movie from this scene","Jurassic World",15,2,"modern theme park entrance gate with tropical jungle backdrop cinematic wide shot no text"
+q16,question_scene,scene_q16_the_avengers.png,"Guess the movie from this scene","The Avengers",16,2,"New York city skyline with portal opening in sky superhero battle aftermath cinematic wide shot no text no people"
+q17,question_scene,scene_q17_frozen.png,"Guess the movie from this scene","Frozen",17,2,"ice castle glittering on snowy mountain peak under aurora sky cinematic wide shot no text"
+q18,question_scene,scene_q18_pirates_caribbean.png,"Guess the movie from this scene","Pirates of the Caribbean",18,2,"old wooden pirate ship sailing through foggy Caribbean waters cinematic wide shot no text no people"
+q19,question_scene,scene_q19_rocky.png,"Guess the movie from this scene","Rocky",19,2,"stone steps leading up to museum building city skyline behind cinematic wide shot no text no people"
+q20,question_scene,scene_q20_the_wizard_gandalf.png,"Guess the movie from this scene","The Lord of the Rings",20,2,"misty mountain pass with ancient stone tower and epic fantasy landscape cinematic wide shot no text"
+round_03,title_card,round_03_expert_mode.png,"ROUND 3: EXPERT MODE",,,,
+q21,question_scene,scene_q21_psycho.png,"Guess the movie from this scene","Psycho",21,3,"gothic old house on hill behind motel sign black and white eerie cinematic wide shot no text no people"
+q22,question_scene,scene_q22_casablanca.png,"Guess the movie from this scene","Casablanca",22,3,"foggy airport tarmac at night vintage airplane silhouette black and white cinematic wide shot no text no people"
+q23,question_scene,scene_q23_gladiator.png,"Guess the movie from this scene","Gladiator",23,3,"ancient Roman Colosseum arena sand floor dramatic lighting cinematic wide shot no text no people"
+q24,question_scene,scene_q24_the_departed.png,"Guess the movie from this scene","The Departed",24,3,"Boston city rooftop nighttime skyline gritty urban atmosphere cinematic wide shot no text no people"
+q25,question_scene,scene_q25_the_grand_budapest.png,"Guess the movie from this scene","The Grand Budapest Hotel",25,3,"pastel pink ornate hotel building on snowy mountain symmetrical whimsical cinematic wide shot no text"
+q26,question_scene,scene_q26_mad_max.png,"Guess the movie from this scene","Mad Max: Fury Road",26,3,"post-apocalyptic desert wasteland with modified vehicle dust storm cinematic wide shot no text no people"
+q27,question_scene,scene_q27_the_wizard_potter.png,"Guess the movie from this scene","Harry Potter",27,3,"tall gothic castle with towers overlooking lake at dusk magical cinematic wide shot no text no people"
+q28,question_scene,scene_q28_blade_runner.png,"Guess the movie from this scene","Blade Runner",28,3,"neon-lit futuristic cityscape rain falling flying vehicles cinematic wide shot no text no people"
+q29,question_scene,scene_q29_the_godfather.png,"Guess the movie from this scene","The Godfather",29,3,"dark wood-paneled office desk with single lamp shadowy Italian decor cinematic wide shot no people"
+q30,question_scene,scene_q30_up.png,"Guess the movie from this scene","Up",30,3,"small house lifted by hundreds of colorful balloons floating over clouds cinematic wide shot no text"
+round_04,title_card,round_04_final_challenge.png,"ROUND 4: FINAL CHALLENGE",,,,
+q31,question_scene,scene_q31_2001_space_odyssey.png,"Guess the movie from this scene","2001: A Space Odyssey",31,4,"black monolith standing on desolate lunar surface stars above cinematic wide shot no text no people"
+q32,question_scene,scene_q32_pulp_fiction.png,"Guess the movie from this scene","Pulp Fiction",32,4,"retro diner booth with jukebox neon signs 1990s Los Angeles cinematic wide shot no text no people"
+q33,question_scene,scene_q33_alien.png,"Guess the movie from this scene","Alien",33,4,"dark spaceship corridor with dripping walls ominous shadows sci-fi cinematic wide shot no text no people"
+q34,question_scene,scene_q34_amelie.png,"Guess the movie from this scene","Amelie",34,4,"charming Parisian cafe street corner cobblestone warm golden light cinematic wide shot no text no people"
+q35,question_scene,scene_q35_the_shawshank.png,"Guess the movie from this scene","The Shawshank Redemption",35,4,"old stone prison building courtyard dramatic sky cinematic wide shot no text no people"
+outro,outro,outro_scoreboard.png,"How many did you get right?",,,,
+end_screen,outro,end_screen.png,"Subscribe for more Movie Trivia Quizzes!",,,,
