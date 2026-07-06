@@ -27,7 +27,7 @@ OUTPUT   = f"{_folder}.mp4"
 # CLEAN_STYLE: quizzes where the question text is already baked into the image
 # (state shapes, emoji quizzes, etc). For these, don't draw duplicate text bars.
 # quiz2 = state shapes, quiz5-10 = future visual quizzes
-CLEAN_STYLE = _folder in ("quiz2", "quiz5", "quiz6", "quiz7", "quiz8", "quiz9", "quiz10")
+CLEAN_STYLE = _folder in ("quiz2", "quiz5", "quiz6", "quiz7", "quiz8", "quiz9", "quiz10", "quiz11")
 
 T_TITLE    = 4.0
 T_QUESTION = 5.0
@@ -266,7 +266,11 @@ def load_base(img_path):
     arr[:,:] = [15, 20, 50]
     return Image.fromarray(arr)
 
-def draw_qnum_badge(img, qnum, total=50):
+TOTAL_QUESTIONS = 50  # set dynamically in main()
+
+def draw_qnum_badge(img, qnum, total=None):
+    if total is None:
+        total = TOTAL_QUESTIONS
     """Draw a clean purple circle badge with question number in top-right corner."""
     overlay = Image.new("RGBA", (W, H), (0,0,0,0))
     draw = ImageDraw.Draw(overlay)
@@ -436,6 +440,8 @@ def main():
     rows = []
     with open(CSV_PATH, newline="", encoding="utf-8") as f:
         rows = list(csv.DictReader(f))
+    global TOTAL_QUESTIONS
+    TOTAL_QUESTIONS = sum(1 for r in rows if r["asset_type"] == "question_scene")
     print(f"Loaded {len(rows)} assets")
     print(f"Output: {OUTPUT}")
     print(f"Avatar: {'✓ found' if os.path.exists(AVATAR_PATH) else '✗ not found (using fallback)'}\n")
