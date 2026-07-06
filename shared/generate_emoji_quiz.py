@@ -86,20 +86,32 @@ def download_emoji(emoji_char):
         try: return Image.open(cache_path).convert("RGBA")
         except: pass
     
-    url = TWEMOJI_BASE + cp + ".png"
-    try:
-        ctx = ssl.create_default_context()
-        ctx.check_hostname = False
-        ctx.verify_mode = ssl.CERT_NONE
-        req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
-        with urllib.request.urlopen(req, context=ctx, timeout=15) as r:
-            data = r.read()
-        with open(cache_path, "wb") as f:
-            f.write(data)
-        return Image.open(cache_path).convert("RGBA")
-    except Exception as e:
-        print(f"      ⚠️  emoji {cp} download failed: {e}")
-        return None
+    # Try several CDNs — first that works wins
+    urls = [
+        TWEMOJI_BASE + cp + ".png",
+        f"https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/72x72/{cp}.png",
+        f"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/{cp}.png",
+        f"https://raw.githubusercontent.com/jdecked/twemoji/main/assets/72x72/{cp}.png",
+    ]
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    last_err = None
+    for url in urls:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, context=ctx, timeout=15) as r:
+                data = r.read()
+            if len(data) < 100:
+                raise Exception("empty response")
+            with open(cache_path, "wb") as f:
+                f.write(data)
+            return Image.open(cache_path).convert("RGBA")
+        except Exception as e:
+            last_err = e
+            continue
+    print(f"      ⚠️  emoji {cp} failed on ALL CDNs: {last_err}")
+    return None
 
 def vertical_gradient(c1, c2):
     img = Image.new("RGB", (W, H))
