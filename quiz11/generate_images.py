@@ -381,7 +381,9 @@ def main():
         else:
             question = row.get("question_text","")
             answer = row.get("answer","").strip()
-            emojis = extract_emojis(question)
+            # Emojis: prefer the dedicated clue column, fall back to question text
+            clue = row.get("main_visual_clue","").strip()
+            emojis = extract_emojis(clue) or extract_emojis(question)
             # Clean question label (remove emojis)
             q_label = "".join(c for c in question if ord(c) < 0x2600).strip()
             if not q_label: q_label = "What is this?"
