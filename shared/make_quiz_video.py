@@ -142,19 +142,19 @@ def add_avatar(img):
     return Image.alpha_composite(img.convert("RGBA"), overlay).convert("RGB")
 
 def add_channel_badge(img):
-    """Draw purple pill with @QuizBlitzGo at bottom-center — for title cards."""
+    """Draw purple pill with @QuizBlitzGo at top-right — for title cards only."""
     overlay = Image.new("RGBA", (W, H), (0,0,0,0))
     draw = ImageDraw.Draw(overlay)
-    font = load_font(36, bold=True)
+    font = load_font(32, bold=True)
     text = CHANNEL_NAME
     bb = draw.textbbox((0, 0), text, font=font)
     tw = bb[2] - bb[0]
     th = bb[3] - bb[1]
-    pad_x, pad_y = 40, 16
+    pad_x, pad_y = 32, 14
     pill_w = tw + pad_x * 2
     pill_h = th + pad_y * 2
-    pill_x = (W - pill_w) // 2
-    pill_y = H - pill_h - 36
+    pill_x = W - pill_w - 28
+    pill_y = 28
     draw.rounded_rectangle(
         [(pill_x, pill_y), (pill_x + pill_w, pill_y + pill_h)],
         radius=pill_h // 2,
