@@ -20,13 +20,13 @@ OUTPUT_DIR = "images_and_videos"
 NEG = "blurry, low quality, distorted, ugly, watermark, text, letters, words, writing, typography, cartoon, anime, people, faces, persons, copyrighted characters, logos"
 
 CARD_PROMPTS = {
-    "opening_title.png":            "dramatic cinema film reel montage, glowing movie theater screen, popcorn, red curtains, spotlight beams, dark cinematic studio, no text",
-    "round_01_easy_classics.png":   "classic cinema marquee lights glowing warm, vintage movie theater entrance, film strip decoration, no text",
-    "round_02_getting_harder.png":  "dark movie theater rows of empty seats projector light beam, mysterious atmosphere, no text",
-    "round_03_expert_mode.png":     "film noir style dark cinema, dramatic shadows, single spotlight on empty stage, no text",
-    "round_04_final_challenge.png": "golden movie award statuettes on pedestal, red carpet, spotlights, celebration atmosphere, no text",
-    "outro_scoreboard.png":         "cinema scoreboard style screen glowing, film reels, celebration lights, dark background, no text no numbers",
-    "end_screen.png":               "movie theater packed with glowing screens, popcorn, film reels scattered, cozy cinema night, no text",
+    "opening_title.png":            "dramatic dark cinema interior, red velvet curtains, glowing spotlight beam in center, floating dust particles, empty stage, cinematic wide shot, no text no words no letters no signage",
+    "round_01_easy_classics.png":   "warm golden cinema lobby with rows of round lightbulbs, red carpet, art deco decoration, cinematic wide shot, no text no words no letters no signage",
+    "round_02_getting_harder.png":  "dark movie theater rows of empty red seats, single projector light beam cutting through darkness, mysterious atmosphere, cinematic wide shot, no text no words no letters no signage",
+    "round_03_expert_mode.png":     "film noir style dark cinema, dramatic venetian blind shadows, single spotlight on empty stage floor, moody atmosphere, cinematic wide shot, no text no words no letters no signage",
+    "round_04_final_challenge.png": "golden trophy statuettes on black pedestal, red carpet, dramatic spotlights, confetti falling, celebration atmosphere, cinematic wide shot, no text no words no letters no signage",
+    "outro_scoreboard.png":         "glowing cinema screen frame with soft light burst, film reels stacked beside it, celebration lights, dark background, cinematic wide shot, no text no words no letters no numbers",
+    "end_screen.png":               "cozy movie theater at night, popcorn bucket in foreground, film reels scattered on red carpet, warm glowing screen light, cinematic wide shot, no text no words no letters",
 }
 
 def load_images():

@@ -83,6 +83,16 @@ QUIZ_CONFIGS = {
         "badge":    "ONLY 5% SCORE 50/50!",
         "badge_bg": "#CC0000",
     },
+    "quiz12": {
+        "bg":       "#1A1A1A",
+        "accent":   "#FFCC00",
+        "number":   "35",
+        "line1":    "MOVIE SCENES",
+        "line2":    "CAN YOU NAME THE FILM",
+        "line3":    "FROM ONE SCENE?",
+        "badge":    "ONLY 5% SCORE 35/35!",
+        "badge_bg": "#CC0000",
+    },
     "quiz10": {
         "bg":       "#1A1A1A",
         "accent":   "#FFCC00",
