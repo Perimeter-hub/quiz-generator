@@ -60,6 +60,7 @@ HOOK_LINES = {
     "quiz10": ("GUESS THE SPORT", "BY EMOJI!"),
     "quiz11": ("GUESS THE FAST FOOD", "BY EMOJI!"),
     "quiz12": ("NAME THE MOVIE", "FROM ONE SCENE!"),
+    "quiz16": ("FOOD BY COUNTRY", "+ WOULD YOU RATHER!"),
 }
 HOOK_SUB = "Most people fail Q3..."
 # ─────────────────────────────────────────────────────────────────────────────

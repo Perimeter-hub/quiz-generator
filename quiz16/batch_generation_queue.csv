@@ -1,0 +1,55 @@
+asset_id,asset_type,file_name,round,question_number,question_text,answer,main_visual_clue,stat_pct,image_prompt
+opening_title,title_card,opening_title.png,Opening,,Food & Cuisine by Country!,,,,dramatic assortment of world cuisine dishes arranged on dark table steam rising warm lighting cinematic wide shot no text no words no letters
+wyr_header,title_card,wyr_header.png,WarmUp,,WARM-UP: WOULD YOU RATHER?,,,,dark cozy kitchen countertop with cutting board and scattered ingredients warm lighting cinematic wide shot no text no words no letters
+w01,wyr_scene,,WarmUp,1,Pizza or Tacos?,,🍕|🌮,58,
+w02,wyr_scene,,WarmUp,2,Sushi or Burgers?,,🍣|🍔,52,
+w03,wyr_scene,,WarmUp,3,Ice Cream or Cake?,,🍦|🎂,61,
+w04,wyr_scene,,WarmUp,4,Ramen or Pasta?,,🍜|🍝,55,
+w05,wyr_scene,,WarmUp,5,Curry or BBQ?,,🍛|🍖,49,
+w06,wyr_scene,,WarmUp,6,Donuts or Croissants?,,🍩|🥐,63,
+w07,wyr_scene,,WarmUp,7,Fried Chicken or Steak?,,🍗|🥩,57,
+w08,wyr_scene,,WarmUp,8,Pancakes or Waffles?,,🥞|🧇,66,
+w09,wyr_scene,,WarmUp,9,Chocolate or Cheese?,,🍫|🧀,54,
+w10,wyr_scene,,WarmUp,10,Coffee or Bubble Tea?,,☕|🧋,71,
+transition,title_card,transition.png,Transition,,"Warm-up done! Now let's test your REAL food knowledge...",,,,warm inviting restaurant kitchen pass window glowing golden light steam rising cinematic wide shot no text no words no letters
+round_01,title_card,round_01_easy.png,ROUND 1,,ROUND 1: EASY CLASSICS,,,,bright colorful spice market stall overflowing with vibrant spices and herbs cinematic wide shot no text no words no letters
+q01,question_scene,scene_q01.png,1,1,Which country is this dish from?,Italy,,,delicious margherita pizza on wooden board melted cheese fresh basil rustic Italian kitchen appetizing food photography no text no words
+q02,question_scene,scene_q02.png,1,2,Which country is this dish from?,Japan,,,elegant sushi platter with fresh salmon and tuna nigiri wooden board minimalist Japanese aesthetic appetizing food photography no text no words
+q03,question_scene,scene_q03.png,1,3,Which country is this dish from?,Mexico,,,colorful street tacos with fresh cilantro lime and salsa vibrant Mexican market appetizing food photography no text no words
+q04,question_scene,scene_q04.png,1,4,Which country is this dish from?,France,,,golden flaky croissants on rustic table with coffee Parisian cafe morning light appetizing food photography no text no words
+q05,question_scene,scene_q05.png,1,5,Which country is this dish from?,India,,,rich colorful curry with steaming rice and naan bread vibrant spices Indian restaurant appetizing food photography no text no words
+q06,question_scene,scene_q06.png,1,6,Which country is this dish from?,China,,,steaming dumplings in bamboo basket traditional Chinese kitchen appetizing food photography no text no words
+q07,question_scene,scene_q07.png,1,7,Which country is this dish from?,Thailand,,,vibrant pad thai noodles with shrimp lime and peanuts Thai street food stall appetizing food photography no text no words
+q08,question_scene,scene_q08.png,1,8,Which country is this dish from?,Greece,,,fresh Greek salad with feta cheese olives Mediterranean seaside table appetizing food photography no text no words
+q09,question_scene,scene_q09.png,1,9,Which country is this dish from?,Germany,,,golden pretzel with mustard on wooden board traditional German beer hall appetizing food photography no text no words
+q10,question_scene,scene_q10.png,1,10,Which country is this dish from?,Spain,,,colorful paella with saffron rice seafood large pan Spanish coastal restaurant appetizing food photography no text no words
+round_02,title_card,round_02_medium.png,ROUND 2,,ROUND 2: GETTING HARDER,,,,busy night market food stalls glowing lanterns steam rising cinematic wide shot no text no words no letters
+q11,question_scene,scene_q11.png,2,11,Which country is this dish from?,South Korea,,,sizzling Korean BBQ on tabletop grill banchan side dishes appetizing food photography no text no words
+q12,question_scene,scene_q12.png,2,12,Which country is this dish from?,Vietnam,,,steaming bowl of pho with fresh herbs and lime Vietnamese street stall appetizing food photography no text no words
+q13,question_scene,scene_q13.png,2,13,Which country is this dish from?,Brazil,,,grilled meat skewers churrasco Brazilian steakhouse appetizing food photography no text no words
+q14,question_scene,scene_q14.png,2,14,Which country is this dish from?,Lebanon,,,colorful hummus platter with pita bread and olive oil Middle Eastern spread appetizing food photography no text no words
+q15,question_scene,scene_q15.png,2,15,Which country is this dish from?,Turkey,,,golden kebabs on skewers with grilled vegetables Turkish restaurant appetizing food photography no text no words
+q16,question_scene,scene_q16.png,2,16,Which country is this dish from?,Ethiopia,,,colorful injera flatbread with stews traditional Ethiopian platter appetizing food photography no text no words
+q17,question_scene,scene_q17.png,2,17,Which country is this dish from?,Peru,,,fresh ceviche with lime and red onion Peruvian coastal dish appetizing food photography no text no words
+q18,question_scene,scene_q18.png,2,18,Which country is this dish from?,Morocco,,,fragrant tagine with dried fruit and spices Moroccan clay pot appetizing food photography no text no words
+q19,question_scene,scene_q19.png,2,19,Which country is this dish from?,Philippines,,,adobo chicken simmered in dark sauce Filipino home kitchen appetizing food photography no text no words
+q20,question_scene,scene_q20.png,2,20,Which country is this dish from?,Poland,,,hearty pierogi dumplings with sour cream Polish kitchen table appetizing food photography no text no words
+round_03,title_card,round_03_expert.png,ROUND 3,,ROUND 3: EXPERT LEVEL,,,,fine dining restaurant kitchen chef plating dramatic lighting cinematic wide shot no text no words no letters
+q21,question_scene,scene_q21.png,3,21,Which country is this dish from?,Hungary,,,rich goulash stew with paprika rustic Hungarian bowl appetizing food photography no text no words
+q22,question_scene,scene_q22.png,3,22,Which country is this dish from?,Argentina,,,thin empanadas golden pastry on rustic board Argentine bakery appetizing food photography no text no words
+q23,question_scene,scene_q23.png,3,23,Which country is this dish from?,Indonesia,,,satay skewers with peanut sauce Indonesian street food appetizing food photography no text no words
+q24,question_scene,scene_q24.png,3,24,Which country is this dish from?,Portugal,,,golden custard tarts pastel de nata Portuguese bakery display appetizing food photography no text no words
+q25,question_scene,scene_q25.png,3,25,Which country is this dish from?,Jamaica,,,jerk chicken smoking on grill Caribbean beachside stall appetizing food photography no text no words
+q26,question_scene,scene_q26.png,3,26,Which country is this dish from?,Russia,,,hearty borscht soup with sour cream rustic bowl Russian kitchen appetizing food photography no text no words
+q27,question_scene,scene_q27.png,3,27,Which country is this dish from?,Egypt,,,koshari rice lentils and crispy onions Egyptian street food appetizing food photography no text no words
+q28,question_scene,scene_q28.png,3,28,Which country is this dish from?,Malaysia,,,vibrant nasi lemak with sambal and peanuts Malaysian banana leaf appetizing food photography no text no words
+q29,question_scene,scene_q29.png,3,29,Which country is this dish from?,Nigeria,,,spicy jollof rice with grilled plantain Nigerian celebration table appetizing food photography no text no words
+q30,question_scene,scene_q30.png,3,30,Which country is this dish from?,Sweden,,,Swedish meatballs with lingonberry sauce cozy Scandinavian table appetizing food photography no text no words
+round_04,title_card,round_04_final.png,ROUND 4,,ROUND 4: FINAL CHALLENGE,,,,golden trophy on pedestal surrounded by world cuisine dishes celebration atmosphere cinematic wide shot no text no words no letters
+q31,question_scene,scene_q31.png,4,31,Which country is this dish from?,Colombia,,,arepa cornmeal cakes with fillings Colombian breakfast table appetizing food photography no text no words
+q32,question_scene,scene_q32.png,4,32,Which country is this dish from?,Israel,,,fresh falafel with tahini and salad Middle Eastern plate appetizing food photography no text no words
+q33,question_scene,scene_q33.png,4,33,Which country is this dish from?,Switzerland,,,melted cheese fondue with bread cubes cozy Swiss chalet table appetizing food photography no text no words
+q34,question_scene,scene_q34.png,4,34,Which country is this dish from?,Cuba,,,Cuban sandwich pressed golden with pickles rustic cafe counter appetizing food photography no text no words
+q35,question_scene,scene_q35.png,4,35,Which country is this dish from?,Austria,,,golden schnitzel with lemon wedge Austrian restaurant table appetizing food photography no text no words
+outro,outro,outro_scoreboard.png,Outro,,How many did you get right?,,,,
+end_screen,outro,end_screen.png,End,,Subscribe for more Food Quizzes!,,,,

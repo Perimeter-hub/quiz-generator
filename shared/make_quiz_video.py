@@ -35,6 +35,9 @@ T_THINKING = 6.0
 T_ANSWER   = 4.0
 T_OUTRO    = 6.0
 T_FINALE   = 8.0   # bright finale screen duration
+T_WYR_Q      = 4.0   # would-you-rather question display
+T_WYR_THINK  = 3.0   # short thinking pause
+T_WYR_REVEAL = 3.0   # stat bar reveal
 
 MUSIC_QUESTION  = "music_question.mp3"
 MUSIC_COUNTDOWN = "music_countdown.mp3"
@@ -310,6 +313,124 @@ def strip_emoji(text):
     return emoji_pattern.sub("", text).strip()
 
 
+# ── WOULD YOU RATHER WARM-UP ───────────────────────────────────────────────────
+_emoji_cache = {}
+
+def get_emoji_img(char, size=180):
+    """Fetch a Twemoji PNG for a single emoji, multi-CDN fallback, memory+disk cached."""
+    import ssl, urllib.request
+    if char in _emoji_cache:
+        return _emoji_cache[char]
+    cp = "-".join(f"{ord(c):x}" for c in char if ord(c) != 0xFE0F)
+    cache_dir = "/tmp/twemoji_cache"
+    os.makedirs(cache_dir, exist_ok=True)
+    cache_path = os.path.join(cache_dir, f"{cp}.png")
+    img = None
+    if os.path.exists(cache_path):
+        try:
+            img = Image.open(cache_path).convert("RGBA")
+        except Exception:
+            img = None
+    if img is None:
+        urls = [
+            f"https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/{cp}.png",
+            f"https://cdn.jsdelivr.net/gh/jdecked/twemoji@14.1.2/assets/72x72/{cp}.png",
+            f"https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/{cp}.png",
+            f"https://raw.githubusercontent.com/jdecked/twemoji/main/assets/72x72/{cp}.png",
+        ]
+        ctx = ssl.create_default_context()
+        ctx.check_hostname = False
+        ctx.verify_mode = ssl.CERT_NONE
+        for url in urls:
+            try:
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+                with urllib.request.urlopen(req, context=ctx, timeout=15) as r:
+                    data = r.read()
+                if len(data) < 100:
+                    raise Exception("empty")
+                with open(cache_path, "wb") as f:
+                    f.write(data)
+                img = Image.open(cache_path).convert("RGBA")
+                break
+            except Exception:
+                continue
+    if img is not None:
+        img = img.resize((size, size), Image.LANCZOS)
+    _emoji_cache[char] = img
+    return img
+
+
+def make_wyr_frame(question, opt_a, opt_b, reveal=False, pct_a=50):
+    """Draw a Would-You-Rather split scene. If reveal, show percentage bars."""
+    arr = np.zeros((H, W, 3), dtype=np.uint8)
+    arr[:, :] = [24, 12, 40]
+    img = Image.fromarray(arr, "RGB")
+    draw = ImageDraw.Draw(img)
+    gc = (40, 26, 60)
+    for x in range(0, W, 70): draw.line([(x,0),(x,H)], fill=gc, width=1)
+
+    f_q = load_font(38, bold=True)
+    img = draw_bar(img, question, 0.14, (10,10,10,190), COL_WHITE, fsize=38, bold=True, pad=20)
+    draw = ImageDraw.Draw(img)
+
+    # Left / right halves
+    draw.rectangle([(0, 0), (W//2, H)], fill=None)
+    half_x1, half_x2 = W // 4, 3 * W // 4
+    cy = H // 2 + 20
+
+    e_a = get_emoji_img(opt_a, size=190)
+    e_b = get_emoji_img(opt_b, size=190)
+    img = img.convert("RGBA")
+    if e_a: img.paste(e_a, (half_x1 - 95, cy - 95), e_a)
+    if e_b: img.paste(e_b, (half_x2 - 95, cy - 95), e_b)
+    draw = ImageDraw.Draw(img)
+
+    # OR divider
+    f_or = load_font(44, bold=True)
+    bb = draw.textbbox((0,0), "OR", font=f_or)
+    draw.ellipse([(W//2-42, cy-42),(W//2+42, cy+42)], fill=(107,33,212,255))
+    draw.text((W//2-(bb[2]-bb[0])//2, cy-(bb[3]-bb[1])//2-6), "OR", font=f_or, fill=(255,255,255))
+
+    if reveal:
+        pct_b = 100 - pct_a
+        bar_y = cy + 150
+        bar_h = 46
+        # Left bar
+        bw_a = int((W//2 - 60) * pct_a / 100)
+        draw.rounded_rectangle([(30, bar_y), (30 + max(bw_a, 40), bar_y+bar_h)], radius=10, fill=(60,180,120,230))
+        f_pct = load_font(30, bold=True)
+        draw.text((40, bar_y+8), f"{pct_a}%", font=f_pct, fill=(255,255,255))
+        # Right bar
+        bw_b = int((W//2 - 60) * pct_b / 100)
+        rx = W - 30 - max(bw_b, 40)
+        draw.rounded_rectangle([(rx, bar_y), (W-30, bar_y+bar_h)], radius=10, fill=(220,90,60,230))
+        draw.text((W-40-70, bar_y+8), f"{pct_b}%", font=f_pct, fill=(255,255,255))
+
+    img = add_avatar(img.convert("RGB"))
+    return img
+
+
+def make_wyr_segments(row):
+    """Build (question + reveal) frame segments for one Would-You-Rather row."""
+    q = strip_emoji(row["question_text"].strip())
+    clue = row.get("main_visual_clue", "").strip()
+    parts = [p.strip() for p in clue.split("|")]
+    if len(parts) != 2:
+        return []
+    opt_a, opt_b = parts
+    try:
+        pct_a = int(row.get("stat_pct", "50") or "50")
+    except ValueError:
+        pct_a = 50
+
+    segs = []
+    frame_q = make_wyr_frame(q, opt_a, opt_b, reveal=False)
+    segs.append((frame_q, T_WYR_Q + T_WYR_THINK, "wyr_question"))
+    frame_r = make_wyr_frame(q, opt_a, opt_b, reveal=True, pct_a=pct_a)
+    segs.append((frame_r, T_WYR_REVEAL, "wyr_reveal"))
+    return segs
+
+
 def make_segments(row):
     img_path = os.path.join(IMAGES_DIR, row["file_name"])
     atype    = row["asset_type"]
@@ -402,10 +523,12 @@ def build_audio_track(segments_with_music, total_frames):
             clips_cache["question"] = c.with_effects([afx.MultiplyVolume(VOL_QUESTION)])
             clips_cache["title"]    = c.with_effects([afx.MultiplyVolume(0.25)])
             clips_cache["finale"]   = c.with_effects([afx.MultiplyVolume(0.8)])
+            clips_cache["wyr_question"] = c.with_effects([afx.MultiplyVolume(0.45)])
         if has_cd:
             clips_cache["countdown"] = AudioFileClip(MUSIC_COUNTDOWN).with_effects([afx.MultiplyVolume(VOL_COUNTDOWN)])
         if has_an:
             clips_cache["answer"] = AudioFileClip(MUSIC_ANSWER).with_effects([afx.MultiplyVolume(VOL_ANSWER)])
+            clips_cache["wyr_reveal"] = AudioFileClip(MUSIC_ANSWER).with_effects([afx.MultiplyVolume(0.5)])
 
         audio_clips = []
         current_time = 0.0
@@ -466,7 +589,10 @@ def main():
             print(f"  [{i:2d}/{len(rows)}] {row['asset_id']} → replaced with animated finale")
             continue  # Will add finale at end
 
-        segs = make_segments(row)
+        if row["asset_type"] == "wyr_scene":
+            segs = make_wyr_segments(row)
+        else:
+            segs = make_segments(row)
         if segs:
             for img, dur, tag in segs:
                 all_segments.append((img, dur, tag))
