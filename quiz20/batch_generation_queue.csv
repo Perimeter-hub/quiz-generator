@@ -1,0 +1,55 @@
+asset_id,asset_type,file_name,round,question_number,question_text,answer,main_visual_clue,stat_pct,image_prompt
+opening_title,title_card,opening_title.png,Opening,,Tech & Gadgets Trivia!,,,,futuristic glowing circuit board close-up blue neon light dramatic tech atmosphere cinematic wide shot no text no words no letters
+wyr_header,title_card,wyr_header.png,WarmUp,,WARM-UP: WOULD YOU RATHER?,,,,dark tech workspace with glowing monitors and cables warm ambient light cinematic wide shot no text no words no letters
+w01,wyr_scene,,WarmUp,1,Laptop or Tablet?,,💻|📱,56,
+w02,wyr_scene,,WarmUp,2,Wired or Wireless?,,🔌|📶,64,
+w03,wyr_scene,,WarmUp,3,Console Gaming or PC Gaming?,,🎮|🖥️,53,
+w04,wyr_scene,,WarmUp,4,Texting or Calling?,,💬|📞,72,
+w05,wyr_scene,,WarmUp,5,Streaming Movies or Streaming Video?,,🎬|📺,51,
+w06,wyr_scene,,WarmUp,6,Headphones or Speaker?,,🎧|🔊,59,
+w07,wyr_scene,,WarmUp,7,New Phone or Extra Battery Life?,,📱|🔋,61,
+w08,wyr_scene,,WarmUp,8,Touchscreen or Physical Buttons?,,📱|🔘,68,
+w09,wyr_scene,,WarmUp,9,Fast Wi-Fi or Huge Storage?,,📶|💾,55,
+w10,wyr_scene,,WarmUp,10,Smart Speaker or Robot Vacuum?,,🔊|🤖,57,
+transition,title_card,transition.png,Transition,,"Warm-up done! Now let's test your REAL tech knowledge...",,,,glowing server room data center rows of lights futuristic blue atmosphere cinematic wide shot no text no words no letters
+round_01,title_card,round_01_easy.png,ROUND 1,,ROUND 1: EASY,,,,bright modern tech startup office with monitors and plants natural light cinematic wide shot no text no words no letters
+q01,question_scene,scene_q01.png,1,1,What does WWW stand for?,World Wide Web,,,glowing globe made of connected light lines digital network cinematic wide shot no text no words
+q02,question_scene,scene_q02.png,1,2,What company created the iPhone?,Apple,,,sleek modern smartphone on minimalist desk soft studio lighting cinematic wide shot no text no words
+q03,question_scene,scene_q03.png,1,3,What does GPS stand for?,Global Positioning System,,,satellite orbiting earth glowing signal lines space photography cinematic wide shot no text no words
+q04,question_scene,scene_q04.png,1,4,What was the first widely used web browser called?,Mosaic,,,vintage 1990s computer monitor glowing screen retro office cinematic wide shot no text no words
+q05,question_scene,scene_q05.png,1,5,What does USB stand for?,Universal Serial Bus,,,close-up USB cable and port glowing blue light macro photography cinematic wide shot no text no words
+q06,question_scene,scene_q06.png,1,6,Who founded Microsoft?,Bill Gates,,,vintage 1980s computer lab with old monitors cinematic wide shot no text no words
+q07,question_scene,scene_q07.png,1,7,What does AI stand for?,Artificial Intelligence,,,glowing neural network pattern abstract digital brain visualization cinematic wide shot no text no words
+q08,question_scene,scene_q08.png,1,8,What was the first product Apple ever sold?,Apple I computer,,,vintage wooden case computer motherboard exposed retro tech cinematic wide shot no text no words
+q09,question_scene,scene_q09.png,1,9,What year was the first iPhone released?,2007,,,sleek smartphone glowing screen dark background product photography cinematic wide shot no text no words
+q10,question_scene,scene_q10.png,1,10,What does CPU stand for?,Central Processing Unit,,,macro photography computer processor chip glowing circuits cinematic wide shot no text no words
+round_02,title_card,round_02_medium.png,ROUND 2,,ROUND 2: GETTING HARDER,,,,dark server room glowing blue lights rows of racks cinematic wide shot no text no words no letters
+q11,question_scene,scene_q11.png,2,11,What does HTML stand for?,HyperText Markup Language,,,glowing code on dark monitor screen close-up cinematic wide shot no text no words
+q12,question_scene,scene_q12.png,2,12,Which company developed the Android operating system?,Google,,,modern smartphone with colorful app icons glowing screen cinematic wide shot no text no words
+q13,question_scene,scene_q13.png,2,13,What does URL stand for?,Uniform Resource Locator,,,glowing web browser address bar abstract digital art cinematic wide shot no text no words
+q14,question_scene,scene_q14.png,2,14,Who is considered the father of the World Wide Web?,Tim Berners-Lee,,,vintage computer lab CERN style research office 1990s cinematic wide shot no text no words
+q15,question_scene,scene_q15.png,2,15,What does RAM stand for?,Random Access Memory,,,close-up computer memory stick glowing green circuit macro photography cinematic wide shot no text no words
+q16,question_scene,scene_q16.png,2,16,What material was the world's first computer mouse made of?,Wood,,,vintage wooden computer mouse on retro desk 1960s style cinematic wide shot no text no words
+q17,question_scene,scene_q17.png,2,17,Which company created the PlayStation?,Sony,,,modern gaming console setup glowing lights dark room cinematic wide shot no text no words
+q18,question_scene,scene_q18.png,2,18,What does VR stand for?,Virtual Reality,,,person wearing VR headset glowing digital environment cinematic wide shot no text no words no people faces
+q19,question_scene,scene_q19.png,2,19,What year was Google founded?,1998,,,vintage late 1990s garage office startup computers cinematic wide shot no text no words
+q20,question_scene,scene_q20.png,2,20,What does SSD stand for?,Solid State Drive,,,sleek black storage drive glowing blue accent macro photography cinematic wide shot no text no words
+round_03,title_card,round_03_expert.png,ROUND 3,,ROUND 3: EXPERT LEVEL,,,,dramatic dark tech laboratory glowing blue equipment cinematic wide shot no text no words no letters
+q21,question_scene,scene_q21.png,3,21,Bluetooth technology is named after which historical figure?,Harald Bluetooth,,,ancient viking rune stone weathered stone carving cinematic wide shot no text no words
+q22,question_scene,scene_q22.png,3,22,In what year was the first email sent?,1971,,,vintage 1970s mainframe computer room retro technology cinematic wide shot no text no words
+q23,question_scene,scene_q23.png,3,23,What does ROM stand for?,Read-Only Memory,,,vintage computer chip close-up macro photography circuit board cinematic wide shot no text no words
+q24,question_scene,scene_q24.png,3,24,Which company invented the QWERTY keyboard layout?,Remington,,,antique typewriter keys close-up vintage sepia tone cinematic wide shot no text no words
+q25,question_scene,scene_q25.png,3,25,What does LED stand for?,Light Emitting Diode,,,glowing colorful LED lights macro photography dark background cinematic wide shot no text no words
+q26,question_scene,scene_q26.png,3,26,What was the codename for the original iPhone project?,Purple,,,sleek dark smartphone prototype on black surface studio lighting cinematic wide shot no text no words
+q27,question_scene,scene_q27.png,3,27,What does SSD stand for in storage technology?,Solid State Drive,,,futuristic glowing data storage device abstract technology cinematic wide shot no text no words
+q28,question_scene,scene_q28.png,3,28,Who co-founded Apple alongside Steve Jobs?,Steve Wozniak,,,vintage 1970s garage workshop with electronics tools cinematic wide shot no text no words no people
+q29,question_scene,scene_q29.png,3,29,What does 4K refer to on a television?,Resolution,,,large modern television glowing vivid colorful display dark living room cinematic wide shot no text no words
+q30,question_scene,scene_q30.png,3,30,In what year was the first text message sent?,1992,,,vintage 1990s mobile phone brick style retro technology cinematic wide shot no text no words
+round_04,title_card,round_04_final.png,ROUND 4,,ROUND 4: FINAL CHALLENGE,,,,golden trophy glowing on dark tech pedestal futuristic celebration lights cinematic wide shot no text no words no letters
+q31,question_scene,scene_q31.png,4,31,What does NFC stand for?,Near Field Communication,,,two smartphones close together glowing connection signal cinematic wide shot no text no words
+q32,question_scene,scene_q32.png,4,32,What is considered the first video game ever created?,Tennis for Two,,,vintage oscilloscope screen glowing green line 1950s laboratory cinematic wide shot no text no words
+q33,question_scene,scene_q33.png,4,33,What does IoT stand for?,Internet of Things,,,smart home devices glowing connected network illustration cinematic wide shot no text no words
+q34,question_scene,scene_q34.png,4,34,Which company created the first commercially successful graphical interface computer?,Apple,,,vintage boxy beige computer monitor 1980s office desk cinematic wide shot no text no words
+q35,question_scene,scene_q35.png,4,35,What was the storage capacity of the original iPhone's most common model?,8GB,,,sleek smartphone glowing screen studio product photography dark background cinematic wide shot no text no words
+outro,outro,outro_scoreboard.png,Outro,,How many did you get right?,,,,
+end_screen,outro,end_screen.png,End,,Subscribe for more Tech Quizzes!,,,,
