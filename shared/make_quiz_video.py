@@ -499,10 +499,33 @@ def loop_audio(clip, duration):
     return concatenate_audioclips([clip] * loops).subclipped(0, duration)
 
 
+def ensure_music():
+    """If music files are missing in this quiz folder, auto-copy them from quiz1/
+    (the channel's sound brand — same 3 tracks used everywhere)."""
+    import shutil
+    needed = [MUSIC_QUESTION, MUSIC_COUNTDOWN, MUSIC_ANSWER]
+    missing = [f for f in needed if not os.path.exists(f)]
+    if not missing:
+        return
+    source_dir = os.path.join("..", "quiz1")
+    copied = []
+    for f in missing:
+        src = os.path.join(source_dir, f)
+        if os.path.exists(src):
+            shutil.copy(src, f)
+            copied.append(f)
+    if copied:
+        print(f"  🎵 Auto-copied music from quiz1/: {', '.join(copied)}")
+    else:
+        print(f"  ℹ  Music missing and quiz1/ source not found — video will be silent")
+
+
 def build_audio_track(segments_with_music, total_frames):
     try:
         from moviepy import AudioFileClip, CompositeAudioClip
         import moviepy.audio.fx as afx
+
+        ensure_music()
 
         has_q  = os.path.exists(MUSIC_QUESTION)
         has_cd = os.path.exists(MUSIC_COUNTDOWN)
