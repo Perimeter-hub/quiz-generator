@@ -123,6 +123,16 @@ QUIZ_CONFIGS = {
         "badge":    "ONLY 5% SCORE 35/35!",
         "badge_bg": "#CC0000",
     },
+    "quiz18": {
+        "bg":       "#1A1A1A",
+        "accent":   "#FFCC00",
+        "number":   "35",
+        "line1":    "PROFESSIONS BY EMOJI",
+        "line2":    "PLUS A WOULD YOU RATHER",
+        "line3":    "WARM-UP ROUND!",
+        "badge":    "ONLY 5% SCORE 35/35!",
+        "badge_bg": "#3B6DFF",
+    },
     "quiz10": {
         "bg":       "#1A1A1A",
         "accent":   "#FFCC00",

@@ -27,7 +27,7 @@ OUTPUT   = f"{_folder}.mp4"
 # CLEAN_STYLE: quizzes where the question text is already baked into the image
 # (state shapes, emoji quizzes, etc). For these, don't draw duplicate text bars.
 # quiz2 = state shapes, quiz5-10 = future visual quizzes
-CLEAN_STYLE = _folder in ("quiz2", "quiz5", "quiz6", "quiz7", "quiz8", "quiz9", "quiz10", "quiz11", "quiz17")
+CLEAN_STYLE = _folder in ("quiz2", "quiz5", "quiz6", "quiz7", "quiz8", "quiz9", "quiz10", "quiz11", "quiz17", "quiz18")
 
 T_TITLE    = 4.0
 T_QUESTION = 5.0
